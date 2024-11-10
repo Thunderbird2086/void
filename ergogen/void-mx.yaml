@@ -395,7 +395,7 @@ bottom_plate_text: &bottom_plate_text
       knockout: true
       text: 'ON'
 pcbs:
-  top_plate:
+  top-plate:
     template: kicad8
     outlines:
       edge:
@@ -403,7 +403,7 @@ pcbs:
         layer: Edge.Cuts
     footprints:
       <<: *pcb_base
-  bottom_plate_charger:
+  bottom-plate-charger:
     template: kicad8
     outlines:
       edge:
@@ -445,7 +445,7 @@ pcbs:
           height: 1.5
           knockout: true
           text: 'STDBY'
-  bottom_plate:
+  bottom-plate:
     template: kicad8
     outlines:
       edge:
