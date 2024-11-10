@@ -32,6 +32,7 @@ fp-info-cache
 fabrication-toolkit-options.json
 
 # Exported files
+exported/
 gerber/
 production/
 release/
