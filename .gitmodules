@@ -1,0 +1,9 @@
+[submodule "cherry-mx/tb2086-kicad"]
+	path = cherry-mx/tb2086-kicad
+	url = git@github.com:Thunderbird2086/tb2086-kicad.git
+[submodule "top-plate/tb2086-kicad"]
+	path = plates/top-plate/tb2086-kicad
+	url = git@github.com:Thunderbird2086/tb2086-kicad.git
+[submodule "bottom-plate/tb2086-kicad"]
+	path = plates/bottom-plate/tb2086-kicad
+	url = git@github.com:Thunderbird2086/tb2086-kicad.git

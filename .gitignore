@@ -27,3 +27,18 @@ fp-info-cache
 # Exported BOM files
 *.xml
 *.csv
+
+# Files from toolkits
+fabrication-toolkit-options.json
+
+# Exported files
+gerber/
+production/
+release/
+*.lck
+*.rpt
+*.step
+*.zip
+
+# macOS
+.DS_Store 
