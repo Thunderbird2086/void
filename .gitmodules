@@ -10,3 +10,12 @@
 [submodule "hybrid-mx/tb2086-kicad"]
 	path = hybrid-mx/tb2086-kicad
 	url = git@github.com:Thunderbird2086/tb2086-kicad.git
+[submodule "plates/bottom-plate/tb2086-kicad"]
+	path = plates/bottom-plate/tb2086-kicad
+	url = git@github.com:Thunderbird2086/tb2086-kicad.git
+[submodule "plates/bottom-plate-charger/tb2086-kicad"]
+	path = plates/bottom-plate-charger/tb2086-kicad
+	url = git@github.com:Thunderbird2086/tb2086-kicad.git
+[submodule "chocolate/tb2086-kicad"]
+	path = chocolate/tb2086-kicad
+	url = git@github.com:Thunderbird2086/tb2086-kicad.git

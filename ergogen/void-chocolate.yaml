@@ -408,7 +408,7 @@ bottom_plate_text: &bottom_plate_text
       knockout: true
       text: 'ON'
 pcbs:
-  top_plate:
+  top-plate:
     template: kicad8
     outlines:
       edge:
@@ -467,7 +467,7 @@ pcbs:
     footprints:
       <<: *pcb_base
       <<: *bottom_plate_text
-  void-3x5-cherry-mx:
+  void-3x5-chocolate:
     template: kicad8
     outlines:
       edge:
@@ -475,7 +475,7 @@ pcbs:
         layer: Edge.Cuts
     footprints:
       hotswap:
-        what: MX_HS_1u
+        what: choc_v1_v2_HS_1u
         where:
           - /matrix.*/
           - /cluster_esc_thumb/
@@ -483,24 +483,20 @@ pcbs:
         params:
           P1: "{{colrow}}"
           P2: "{{column_net}}"
-        adjust:
-          rotate: -180
       space:
-        what: MX_HS_1.5u
+        what: choc_v1_v2_HS_1.5u
         where:
           - ref: cluster_space_thumb
         params:
           P1: "{{colrow}}"
           P2: "{{column_net}}"
-        adjust:
-          rotate: -180
       diode:
         what: d_1206_3216m
         where:
           - /matrix_.*/
           - /cluster_.*/
         adjust:
-          shift: [-7, 2.5]
+          shift: [-7.5, 2.5]
           rotate: -90
         params:
           show_3d: true

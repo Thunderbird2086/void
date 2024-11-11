@@ -309,7 +309,7 @@ pcb_base: &pcb_base
     where:
       - /matrix_middle_bottom/
     adjust:
-      shift: [3.5, -18.5]
+      shift: [3.5, -18]
       rotate: -11.5
     params:
       side: 'F'
