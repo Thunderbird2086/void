@@ -22,24 +22,24 @@ jobs:
       with:
         config: .kibot.yaml
         dir: cherry-mx/gerber
-        board: cherry-mx/void-cherry-mx.kicad_pcb
-        schema: cherry-mx/void-cherry-mx.kicad_sch
+        board: cherry-mx/void-3x5-cherry-mx.kicad_pcb
+        schema: cherry-mx/void-3x5-cherry-mx.kicad_sch
 
     - name: Generate gerber for VOID Chocolate reversible
       uses: INTI-CMNB/KiBot@v1.8.1
       with:
         config: .kibot.yaml
         dir: chocolate/gerber
-        board: chocolate/void-chocolate.kicad_pcb
-        schema: chocolate/void-chocolate.kicad_sch
+        board: chocolate/void-3x5-chocolate.kicad_pcb
+        schema: chocolate/void-3x5-chocolate.kicad_sch
 
     - name: Generate gerber for VOID Cherry MX reversible
       uses: INTI-CMNB/KiBot@v1.8.1
       with:
         config: .kibot.yaml
         dir: hybrid-mx/gerber
-        board: hybrid-mx/void-hybrid-mx.kicad_pcb
-        schema: hybrid-mx/void-hybrid-mx.kicad_sch
+        board: hybrid-mx/void-3x5-hybrid-mx.kicad_pcb
+        schema: hybrid-mx/void-3x5-hybrid-mx.kicad_sch
 
     - name: Zip Gerber files
       run: |
