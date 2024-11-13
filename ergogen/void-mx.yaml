@@ -1,0 +1,915 @@
+meta:
+  author: Allen Choi
+  version: 0.5.8
+  engine: 4.1.0
+units:
+  # proxy spacing
+  kx: U
+  ky: U
+  # padding
+  px: kx+1
+  py: ky+1
+  corner: 1
+points:
+  zones:
+    matrix:
+      key:
+        padding: px
+        spread: px
+      columns:
+        pinky:
+          key:
+            splay: 6
+            column_net: col_pinky
+        ring:
+          key:
+            splay: -6
+            stagger: 12.5
+            column_net: col_ring
+        middle:
+          key:
+            stagger: 5
+            column_net: col_middle
+        index:
+          key:
+            stagger: -8.5
+            column_net: col_index
+        inner:
+          key:
+            stagger: -2.5
+            shift: [0, 0]
+            column_net: col_inner
+      rows:
+        bottom:
+          row_net: row_bottom
+        home:
+          row_net: row_home
+        top:
+          row_net: row_top
+    cluster:
+      key:
+        spread: 1kx
+      anchor:
+        ref: matrix_inner_bottom
+        shift: [-0.8kx, -ky]
+        rotate: -7
+      columns:
+        esc:
+          key:
+            shift: [2, -2]
+            column_net: col_middle
+        layer:
+          key:
+            splay: -15
+            shift: [6, -3.5]
+            column_net: col_index
+        space:
+          key:
+            width: 1.5px
+            splay: 75
+            shift: [1, -10]
+            column_net: col_inner
+      rows:
+        thumb:
+          row_net: row_thumb
+outlines:
+  raw:
+    - what: rectangle
+      where:
+        - ref: cluster_space_thumb
+      size: [1.5px, py]
+      bound: false
+      joints: 2
+    - what: rectangle
+      where:
+        - ref: matrix_pinky_top
+          shift: [px, 0]
+      size: [px, py]
+      bound: false
+      joints: 2
+    - what: rectangle
+      where:
+        - ref: matrix_inner_top
+          shift: [-.5px, 0]
+      size: [px, py]
+      bound: false
+      joints: 2
+    - what: rectangle
+      where: true
+      size: [px, py]
+      bound: false
+      fillet: corner
+      joints: 2
+  keys:
+    - what: rectangle
+      where: true
+      size: [kx-0.5, ky-0.5]
+  switches:
+    - what: rectangle
+      where: true
+      asym: source
+      size: 14
+  controller: # MCU
+    - what: rectangle
+      where:
+        ref: matrix_inner_top
+      size: [px, py]
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: matrix_index_top
+      size: [px, py]
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: matrix_inner_top
+        shift: [px, -1.8py]
+      size: [2.3px, 3py]
+      fillet: corner
+      joints: 2
+  patch_thumb_layer:
+    - what: rectangle
+      where:
+        ref: matrix_inner_bottom
+        shift: [0, -.3py]
+      size: [px, 2py]
+      bound: false
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: cluster_esc_thumb
+        shift: [0, 7]
+      size: [px, py]
+      bound: true
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: cluster_space_thumb
+        shift: [0, 0]
+      size: [px, py]
+      bound: true
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: cluster_layer_thumb
+        shift: [0, .1py]
+      size: [px, py]
+      bound: true
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: cluster_layer_thumb
+        shift: [.5px, .1py]
+      size: [px, py]
+      bound: true
+      fillet: corner
+  patch_inner:
+    - what: rectangle
+      where:
+        ref: matrix_index_home
+        shift: [.5px, 0]
+      size: [px, py]
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: matrix_index_bottom
+        shift: [.5px, 0]
+      size: [px, py]
+      fillet: corner
+  patch_ring:  # filling the gap between ring bottom and board
+    - what: rectangle
+      where:
+        ref: matrix_pinky_bottom
+      size: [px, py]
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: matrix_pinky_home
+        shift: [2, -2]
+      size: [px, 1.5py]
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: matrix_ring_bottom
+        shift: [0, -1.5]
+      size: [px, py]
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: cluster_esc_thumb
+      size: [px, py]
+      fillet: corner
+    - what: polygon
+      points:
+        - ref: cluster_esc_thumb
+          shift: [0, 8]
+        - ref: matrix_index_bottom
+          shift: [7, -0.5py]
+        - ref: matrix_middle_bottom
+          shift: [7, -0.1py]
+        - ref: matrix_ring_bottom
+          shift: [-8, -8]
+      fillet: corner
+      joints: 2
+  top_outline:
+    - "raw"
+    - "+patch_ring"
+    - "+patch_inner"
+    - "+patch_thumb_layer"
+  base_outline:
+    - "top_outline"
+    - "+controller"
+  screw_holes:
+    top_left:
+      what: circle
+      where:
+        - ref: matrix_pinky_top
+          shift: [.5kx+1.5, 1]
+      radius: 1.05
+    bottom_left:
+      what: circle
+      where:
+        - ref: matrix_ring_bottom
+          shift: [-12, -3.7]
+      radius: 1.05
+    top_right:
+      what: circle
+      where:
+        - ref: matrix_inner_home
+          shift: [-10, 11]
+      radius: 1.05
+    palm:
+      what: circle
+      where:
+        - ref: matrix_index_bottom
+          shift: [-13, -2]
+      radius: 1.05
+    thumb:
+      what: circle
+      where:
+        - ref: cluster_layer_thumb
+          shift: [0.6kx, 5]
+      radius: 1.05
+  mounting_holes:
+    $extends: outlines.screw_holes
+    top_left:
+      radius: 2.55
+    bottom_left:
+      radius: 2.55
+    top_right:
+      radius: 2.55
+    palm:
+      radius: 2.55
+    thumb:
+      radius: 2.55
+  under_glow:
+    - what: rectangle
+      where:
+        - /matrix_inner_top/
+        - /matrix_inner_bottom/
+        - /matrix_middle_top/
+        - /matrix_middle_bottom/
+        - /matrix_pinky_top/
+        - /matrix_pinky_home/
+      adjust:
+         shift: [0, -10.08]
+      size: 3.6
+  top:
+    - "top_outline"
+    - "-switches"
+    - "-screw_holes"
+  bottom:
+    - "base_outline"
+    - "-screw_holes"
+    - "-under_glow"
+  pcb:
+    - "base_outline"
+    - "-mounting_holes"
+void_version: &void_version
+  text: 'VOID v0.5.8'
+  side: 'F'
+  reversible: true
+  face: 'Android Robot'
+powered_by_ergogen: &powered_by_ergogen
+  params:
+    side: 'F'
+    face: 'KiCad Font'
+    width: 1
+    height: 1
+    reversible: true
+    text: 'Powered By Eergogen'
+pcb_base: &pcb_base
+  filled_zone:
+    what: utility_filled_zone
+    params:
+      side: 'F&B'
+      points: [[0, 0], [297, 0], [297, 210], [0, 210]]
+  tb2086:
+    what: utility_text
+    where:
+      - /matrix_middle_bottom/
+    adjust:
+      shift: [3.5, -18]
+      rotate: -11.5
+    params:
+      side: 'F'
+      face: 'Android Robot'
+      width: 1.2
+      height: 1.2
+      reversible: true
+      text: 'designed by Thunderbird 2086'
+  s_powered_by:
+    what: utility_text
+    where:
+      - /cluster_space_thumb/
+    adjust:
+      shift: [0, -8.5]
+    <<: *powered_by_ergogen
+  void_version_small:
+    what: utility_text
+    where:
+      - /matrix_pinky_bottom/
+    adjust:
+      shift: [0, -9]
+    params:
+      width: 1.2
+      height: 1.2
+      <<: *void_version
+bottom_text_pos: &bottom_text_pos
+  where:
+    - /matrix_ring.*/
+    - /matrix_middle_home/
+    - /matrix_index.*/
+    - /matrix_inner_home/
+    - /cluster_esc_thumb/
+    - /cluster_layer_thumb/
+  adjust:
+    shift: [0, -8]
+bottom_plate_text: &bottom_plate_text
+  update:
+    what: utility_text
+    where:
+      - ref: matrix_inner_home
+        shift: [38.5, -4]
+    params:
+      side: 'F'
+      face: 'KiCad Font'
+      width: 1.5
+      height: 1.5
+      reversible: true
+      knockout: true
+      text: 'UPDATE'
+  ON_f:
+    what: utility_text
+    where:
+      - ref: matrix_inner_home
+        shift: [41.2, -9.5]
+    params:
+      side: 'F'
+      face: 'KiCad Font'
+      width: 1.5
+      height: 1.5
+      knockout: true
+      text: 'ON'
+  OFF_b:
+    what: utility_text
+    where:
+      - ref: matrix_inner_home
+        shift: [40.45, -9.5]
+    params:
+      side: 'B'
+      face: 'KiCad Font'
+      width: 1.5
+      height: 1.5
+      knockout: true
+      text: 'OFF'
+  OFF_f:
+    what: utility_text
+    where:
+      - ref: matrix_inner_home
+        shift: [40.5, -16.5]
+    params:
+      side: 'F'
+      face: 'KiCad Font'
+      width: 1.5
+      height: 1.5
+      knockout: true
+      text: 'OFF'
+  ON_b:
+    what: utility_text
+    where:
+      - ref: matrix_inner_home
+        shift: [41.2, -16.5]
+    params:
+      side: 'B'
+      face: 'KiCad Font'
+      width: 1.5
+      height: 1.5
+      knockout: true
+      text: 'ON'
+pcbs:
+  top_plate:
+    template: kicad8
+    outlines:
+      edge:
+        outline: top
+        layer: Edge.Cuts
+    footprints:
+      <<: *pcb_base
+  bottom-plate-charger:
+    template: kicad8
+    outlines:
+      edge:
+        outline: bottom
+        layer: Edge.Cuts
+    footprints:
+      <<: *pcb_base
+      <<: *bottom_plate_text
+      usb_c:
+        what: "usb-c-6p-c31m17"
+        adjust:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [px+2, 10.5]
+          rotate: 180
+        params:
+          show_3d: true
+          side: 'F'
+      chrg_f:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [39.7, -20.3]
+        params:
+          side: 'F'
+          face: 'KiCad Font'
+          width: 1.5
+          height: 1.5
+          knockout: true
+          text: 'CHRG'
+      stdby_f:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [39.2, -23.8]
+        params:
+          side: 'F'
+          face: 'KiCad Font'
+          width: 1.5
+          height: 1.5
+          knockout: true
+          text: 'STDBY'
+  bottom-plate:
+    template: kicad8
+    outlines:
+      edge:
+        outline: bottom
+        layer: Edge.Cuts
+    footprints:
+      <<: *pcb_base
+      <<: *bottom_plate_text
+  void-3x5-cherry-mx:
+    template: kicad8
+    outlines:
+      edge:
+        outline: pcb
+        layer: Edge.Cuts
+    footprints:
+      hotswap:
+        what: MX_HS_1u
+        where:
+          - /matrix.*/
+          - /cluster_esc_thumb/
+          - /cluster_layer_thumb/
+        params:
+          P1: "{{colrow}}"
+          P2: "{{column_net}}"
+        adjust:
+          rotate: -180
+      space:
+        what: MX_HS_1.5u
+        where:
+          - ref: cluster_space_thumb
+        params:
+          P1: "{{colrow}}"
+          P2: "{{column_net}}"
+        adjust:
+          rotate: -180
+      diode:
+        what: d_1206_3216m
+        where:
+          - /matrix_.*/
+          - /cluster_.*/
+        adjust:
+          shift: [-7, 2.5]
+          rotate: -90
+        params:
+          show_3d: true
+          side: 'B'
+          reversible: true
+          from: "{{colrow}}" # from
+          to: "{{row_net}}" # to
+      per_key_led:
+        what: "led_sk6812mini_e"
+        where:
+          - /matrix_.*/
+          - /cluster_.*/
+        adjust:
+          shift: [0, 5.08]
+        params:
+          from: "{{key.led_next}}"
+          to: "{{key.led_prev}}"
+          reversible: true
+          show_3d: true
+      JP_led:
+        what: SJP_3_BBR_Pad_10x15
+        where:
+          - ref: matrix_inner_home
+            shift: [7, 10]
+            rotate: -90
+        params:
+          reversible: true
+          P1: LED_UNDER_GLOW
+          P2: LED
+          P3: LED_PER_KEY
+      bl1:
+        what: "led_sk6812mini_35x35"
+        where:
+          - ref: matrix_inner_top
+        adjust:
+          shift: [0, -10.08]
+        params:
+          from: LED_UNDER_GLOW
+          to: L19_L20
+          show_3d: true
+      bl2:
+        what: "led_sk6812mini_35x35"
+        where:
+          - ref: matrix_middle_top
+        adjust:
+          shift: [0, -10.08]
+        params:
+          from: L19_L20
+          to: L20_L21
+          show_3d: true
+      bl3 :
+        what: "led_sk6812mini_35x35"
+        where:
+          - ref: matrix_pinky_top
+        adjust:
+          shift: [0, -10.08]
+        params:
+          from: L20_L21
+          to: L21_L22
+          show_3d: true
+      bl4 :
+        what: "led_sk6812mini_35x35"
+        where:
+          - ref: matrix_pinky_home
+        adjust:
+          shift: [0, -10.08]
+        params:
+          from: L21_L22
+          to: L22_L23
+          show_3d: true
+      bl5 :
+        what: "led_sk6812mini_35x35"
+        where:
+          - ref: matrix_middle_bottom
+        adjust:
+          shift: [0, -10.08]
+        params:
+          from: L22_L23
+          to: L23_L24
+          show_3d: true
+      bl6 :
+        what: "led_sk6812mini_35x35"
+        where:
+          - ref: matrix_inner_bottom
+        adjust:
+          shift: [0, -10.08]
+        params:
+          from: L23_24
+          to: END
+          show_3d: true
+      mcu:
+        what: nice_nano
+        params:
+          P00: data
+          P01: LED
+          P02: sda
+          P03: scl
+          P04: row_top
+          P05: row_home
+          P06: row_bottom
+          P07: row_thumb
+          P14: col_inner
+          P15: col_index
+          P18: col_middle
+          P19: col_ring
+          P20: col_pinky
+          P09: cs
+          P10: is_left_hand
+        where:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [px+2, -3.8]
+      oled:
+        what: nice_view
+        params:
+          MOSI: sda
+          SCK: scl
+          CS: cs
+        adjust:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [px+2, -3.8]
+      mcu_r_bottom:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [px+2, -17]
+        params:
+          side: 'F'
+          face: 'KiCad Font'
+          width: 1.5
+          height: 1.5
+          knockout: true
+          text: 'R. Bottom'
+      mcu_l_bottom:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [px+2, -17]
+        params:
+          side: 'B'
+          face: 'KiCad Font'
+          width: 1.5
+          height: 1.5
+          knockout: true
+          mirrored: true
+          text: 'L. Bottom'
+      R_left_hand:
+        what: r_smd_0805_2012m
+        where:
+          - ref: matrix_inner_bottom
+            shift: [14, -4.5]
+            rotate: -90
+        params:
+          show_3d: true
+          side: 'B'
+          P1: is_left_hand
+          P2: VCC
+      R_right_hand:
+        what: r_smd_0805_2012m
+        where:
+          - ref: matrix_inner_bottom
+            shift: [30, -4.5]
+            rotate: -90
+        params:
+          side: 'F'
+          P1: is_left_hand
+          P2: GND
+      trrs:
+        what: trrs_pj_320a
+        where:
+          - ref: matrix_inner_home
+            shift: [38.5, 12.8]
+        params:
+          show_3d: true
+          reversible: true
+          side: 'F'
+          A: jp_scl
+          C: GND
+          B: data_sda
+          D: VCC
+      R_sda:
+        what: r_smd_0805_2012m
+        where:
+          - ref: matrix_inner_home
+            shift: [33, -8.5]
+            rotate: -90
+        params:
+          show_3d: true
+          reversible: true
+          side: 'B'
+          P1: sda
+          P2: VCC
+      R_scl:
+        what: r_smd_0805_2012m
+        where:
+          - ref: matrix_inner_home
+            shift: [35, -8.5]
+            rotate: -90
+        params:
+          side: 'B'
+          reversible: true
+          P1: scl
+          P2: VCC
+      JP_sca:
+        what: SJP_3_BBR_Pad_10x15
+        where:
+          - ref: matrix_inner_home
+            shift: [33, -3.5]
+            rotate: -90
+        params:
+          reversible: true
+          P1: data
+          P2: data_sda
+          P3: sda
+      JP_scl:
+        what: SJP_2_OT_Pad_10x12
+        where:
+          - ref: matrix_inner_home
+            shift: [35.3, -4.8]
+            rotate: -90
+        params:
+          reversible: true
+          P1: scl
+          P2: jp_scl
+      reset_btn:
+        what: SW_smt_20_40_35
+        where:
+          - ref: matrix_inner_home
+            shift: [41.5, -4]
+            rotate: -90
+        params:
+          reversible: true
+          show_3d: true
+          side: 'F'
+          P1: GND
+          P2: RST
+      power_btn:
+        what: SW_SPDT_PCM12
+        where:
+          - ref: matrix_inner_home
+            shift: [40.5, -13]
+            rotate: 90
+        params:
+          reversible: true
+          show_3d: true
+          side: 'F'
+          P1: BAT
+          P2: BAT_IN
+      mcu_bat_con:
+        what: ezmate_78171-1x02
+        where:
+          - ref: matrix_inner_home
+            shift: [34, -15]
+        params:
+          reversible: true
+          show_3d: true
+          side: 'F'
+          P1: GND
+          P2: BAT_IN
+      mcu_bat_text:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [34, -18.8]
+        params:
+          side: 'B'
+          reversible: true
+          face: 'KiCad Font'
+          width: 1
+          height: 1
+          knockout: true
+          text: '-MCU+'
+      chg_led_con:
+        what: te_0-1734839-5_1x05-1mp_p05mm
+        where:
+          - ref: matrix_inner_home
+            shift: [36, -22.5]
+        params:
+          reversible: true
+          show_3d: true
+          side: 'B'
+          P1: BAT
+          P2: STDBY_OUT
+          P3: SIG_IN
+          P4: CHGRG_OUT
+          P5: GND
+          MP: GND
+      chg_led_text:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [36, -27.5]
+        params:
+          side: 'B'
+          reversible: true
+          face: 'KiCad Font'
+          width: 1
+          height: 1
+          knockout: true
+          text: 'CHARGER'
+      bat_con:
+        what: ezmate_78171-1x02
+        where:
+          - ref: matrix_inner_home
+            shift: [37, -31]
+            rotate: -90
+        params:
+          reversible: true
+          show_3d: true
+          side: 'B'
+          P1: GND
+          P2: BAT
+      bat_text:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [41, -31]
+            rotate: -90
+        params:
+          side: 'F'
+          reversible: true
+          face: 'KiCad Font'
+          width: 1
+          height: 1
+          knockout: true
+          text: '-BAT+'
+      chg_led_f:
+        what: led_0603_1608m
+        where:
+          - ref: matrix_inner_home
+            shift: [42, -23.8]
+            rotate: 90
+        params:
+          show_3d: true
+          side: 'F'
+          from: SIG_IN
+          to: CHGRG_OUT
+      chg_led_b:
+        what: led_0603_1608m
+        where:
+          - ref: matrix_inner_home
+            shift: [42, -20.3]
+            rotate: 90
+        params:
+          side: 'B'
+          from: SIG_IN
+          to: CHGRG_OUT
+      stdby_led_b:
+        what: led_0603_1608m
+        where:
+          - ref: matrix_inner_home
+            shift: [42, -23.8]
+            rotate: -90
+        params:
+          side: 'B'
+          from: SIG_IN
+          to: STDBY_OUT
+      stdby_led_f:
+        what: led_0603_1608m
+        where:
+          - ref: matrix_inner_home
+            shift: [42, -20.3]
+            rotate: -90
+        params:
+          show_3d: true
+          side: 'F'
+          from: SIG_IN
+          to: STDBY_OUT
+      <<: *pcb_base
+      r_bottom:
+        <<: *bottom_text_pos
+        what: utility_text
+        params:
+          side: 'F'
+          face: 'KiCad Font'
+          text: 'R. Bottom'
+      l_bottom:
+        <<: *bottom_text_pos
+        what: utility_text
+        params:
+          side: 'B'
+          mirrored: true
+          face: 'KiCad Font'
+          text: 'L. Bottom'
+      void_version_large:
+        what: utility_text
+        where:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [px+2, -27.8]
+        params:
+          width: 2
+          height: 2
+          <<: *void_version
+      powered_by:
+        what: utility_text
+        where:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [px+2, -29.8]
+        <<: *powered_by_ergogen
+      ergogen_logo:
+        what: utility_ergogen_logo
+        where:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [px-1, -33.5]
+        params:
+          reversible: true
+      oshw_logo:
+        what: logo_oshw
+        where:
+          - ref: matrix_inner_home
+            shift: [px+5, -33.5]
+        params:
+          reversible: true
