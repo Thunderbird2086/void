@@ -41,18 +41,6 @@ jobs:
         board: hybrid-mx/void-hybrid-mx.kicad_pcb
         schema: hybrid-mx/void-hybrid-mx.kicad_sch
 
-      uses: INTI-CMNB/KiBot@v1.8.1
-      with:
-        config: .kibot.yaml
-
-      uses: INTI-CMNB/KiBot@v1.8.1
-      with:
-        config: .kibot.yaml
-
-      uses: INTI-CMNB/KiBot@v1.8.1
-      with:
-        config: .kibot.yaml
-
     - name: Zip Gerber files
       run: |
           zip -r --junk-paths void-cherry-mx.zip cherry-mx/gerber
