@@ -39,18 +39,6 @@ jobs:
         dir: case/plate/top-plate-hybrid/gerber
         board: case/plate/top-plate-hybrid/top-plate-hybrid.kicad_pcb
 
-      uses: INTI-CMNB/KiBot@v1.8.1
-      with:
-        config: .kibot.yaml
-
-      uses: INTI-CMNB/KiBot@v1.8.1
-      with:
-        config: .kibot.yaml
-
-      uses: INTI-CMNB/KiBot@v1.8.1
-      with:
-        config: .kibot.yaml
-
     - name: Zip Gerber files
       run: |
           zip -r --junk-paths void-bottom-plate.zip case/plate/bottom-plate/gerber
