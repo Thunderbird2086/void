@@ -41,9 +41,9 @@ jobs:
 
     - name: Zip Gerber files
       run: |
-          zip -r --junk-paths void-bottom-plate.zip case/plate/bottom-plate/gerber
-          zip -r --junk-paths void-top-plate.zip case/plate/top-plate/gerber
-          zip -r --junk-paths void-top-plate-hybrid.zip case/plate/top-plate-hybrid/gerber
+          zip -r --junk-paths void-bottom-plate.zip case/plates/bottom-plate/gerber
+          zip -r --junk-paths void-top-plate.zip case/plates/top-plate/gerber
+          zip -r --junk-paths void-top-plate-hybrid.zip case/plates/top-plate-hybrid/gerber
 
     - name: GH Release
       uses: softprops/action-gh-release@v0.1.15

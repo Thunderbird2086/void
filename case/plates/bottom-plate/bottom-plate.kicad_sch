@@ -1,0 +1,18 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "ac1e266f-59f1-40ee-814a-ad97b629a00a")
+	(paper "A4")
+	(title_block
+		(title "VOID bottom plate")
+		(date "2024-11-17")
+		(rev "0.5.9")
+	)
+	(lib_symbols)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
