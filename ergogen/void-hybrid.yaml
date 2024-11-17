@@ -1,6 +1,6 @@
 meta:
   author: Allen Choi
-  version: 0.5.8
+  version: 0.5.9
   engine: 4.1.0
 units:
   # proxy spacing
@@ -109,6 +109,14 @@ outlines:
       where: true
       asym: source
       size: 14
+  mcu_body:
+    - what: rectangle
+      where:
+        ref: matrix_inner_top
+        shift: [px, -1.8py]
+      size: [2.3px, 3py]
+      fillet: corner
+      joints: 2
   controller: # MCU
     - what: rectangle
       where:
@@ -120,13 +128,7 @@ outlines:
         ref: matrix_index_top
       size: [px, py]
       fillet: corner
-    - what: rectangle
-      where:
-        ref: matrix_inner_top
-        shift: [px, -1.8py]
-      size: [2.3px, 3py]
-      fillet: corner
-      joints: 2
+    - mcu_body
   patch_thumb_layer:
     - what: rectangle
       where:
@@ -144,9 +146,23 @@ outlines:
       fillet: corner
     - what: rectangle
       where:
-        ref: cluster_space_thumb
+        ref: cluster_esc_thumb
         shift: [0, 0]
       size: [px, py]
+      bound: true
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: cluster_layer_thumb
+        shift: [0, 0]
+      size: [px, py]
+      bound: true
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: cluster_space_thumb
+        shift: [0, 0]
+      size: [1.5px, py]
       bound: true
       fillet: corner
     - what: rectangle
@@ -211,6 +227,39 @@ outlines:
           shift: [-8, -8]
       fillet: corner
       joints: 2
+  top_outline_mx:
+    - what: rectangle
+      where:
+        - /matrix_*/
+      size: [px, py]
+      bound: false
+      fillet: corner
+      joints: 2
+    - what: rectangle
+      where:
+        ref: matrix_pinky_top
+        shift: [px, 0]
+      size: [1.5px, py]
+      bound: false
+      fillet: corner
+      joints: 2
+    - what: rectangle
+      where:
+        ref: matrix_pinky_home
+        shift: [px, 0]
+      size: [1.5px, py]
+      bound: false
+      fillet: corner
+      joints: 2
+    - what: rectangle
+      where:
+        ref: matrix_ring_bottom
+        shift: [px, 0]
+      size: [1.5px, py]
+      bound: false
+      fillet: corner
+      joints: 2
+    - "-switches"
   top_outline:
     - "raw"
     - "+patch_ring"
@@ -225,31 +274,50 @@ outlines:
       where:
         - ref: matrix_pinky_top
           shift: [.5kx+1.5, 1]
-      radius: 1.05
+      radius: 1.15
     bottom_left:
       what: circle
       where:
         - ref: matrix_ring_bottom
           shift: [-12, -3.7]
-      radius: 1.05
+      radius: 1.15
     top_right:
       what: circle
       where:
         - ref: matrix_inner_home
           shift: [-10, 11]
-      radius: 1.05
+      radius: 1.15
     palm:
       what: circle
       where:
         - ref: matrix_index_bottom
           shift: [-13, -2]
-      radius: 1.05
+      radius: 1.15
     thumb:
       what: circle
       where:
         - ref: cluster_layer_thumb
           shift: [0.6kx, 5]
-      radius: 1.05
+      radius: 1.15
+  lcd_screw_holes:
+    left:
+      what: circle
+      where:
+        - ref: cluster_layer_thumb
+          shift: [1, 17.3]
+      radius: 1.15
+    right:
+      what: circle
+      where:
+        - ref: cluster_space_thumb
+          shift: [20.4, 2.4]
+      radius: 1.15
+  lcd_screw:
+    $extends: outlines.lcd_screw_holes
+    left:
+      radius: 2.55
+    right:
+      radius: 2.55
   mounting_holes:
     $extends: outlines.screw_holes
     top_left:
@@ -278,6 +346,10 @@ outlines:
     - "top_outline"
     - "-switches"
     - "-screw_holes"
+  top_hybrid:
+    - "top_outline_mx"
+    - "-switches"
+    - "-screw_holes"
   bottom:
     - "base_outline"
     - "-screw_holes"
@@ -285,6 +357,19 @@ outlines:
   pcb:
     - "base_outline"
     - "-mounting_holes"
+    - "-lcd_screw_holes"
+  top_expand:
+    - what: outline
+      name: top_outline
+      expand: 2.5
+  lcd_cover:
+    - mcu_body
+    - "-top_expand"
+    - "-lcd_screw_holes"
+#    - "-lcd_screw"
+combined:
+    - top
+    - "lcd_cover"
 void_version: &void_version
   text: 'VOID v0.5.8'
   side: 'F'
@@ -298,12 +383,14 @@ powered_by_ergogen: &powered_by_ergogen
     height: 1
     reversible: true
     text: 'Powered By Eergogen'
-pcb_base: &pcb_base
-  filled_zone:
+filled_zone: &filled_zone
+  filled_zones:
     what: utility_filled_zone
     params:
       side: 'F&B'
       points: [[0, 0], [297, 0], [297, 210], [0, 210]]
+pcb_base: &pcb_base
+  <<: *filled_zone
   tb2086:
     what: utility_text
     where:
@@ -467,6 +554,53 @@ pcbs:
     footprints:
       <<: *pcb_base
       <<: *bottom_plate_text
+  void-lcd-cover:
+    template: kicad8
+    outlines:
+      edge:
+        outline: lcd_cover
+        layer: Edge.Cuts
+    footprints:
+      <<: *filled_zone
+      window_lefthand:
+        what: nice_view_window
+        adjust:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [px+2, -3.8]
+      powered_by:
+        what: utility_text
+        where:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [px+2, -23.3]
+        <<: *powered_by_ergogen
+      void:
+        what: utility_text
+        where:
+          ref: matrix_inner_home
+        adjust:
+          shift: [38.5, -5]
+          rotate: 90
+        params:
+          width: 10
+          height: 10
+          text: 'VOID'
+          side: 'F'
+          reversible: true
+          face: 'Android Robot'
+      ergogen_logo:
+        what: utility_ergogen_logo
+        where:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [px-1, -27]
+        params:
+          reversible: true
+      oshw_logo:
+        what: logo_oshw
+        where:
+          - ref: matrix_inner_home
+            shift: [px+5, -27.5]
+        params:
+          reversible: true
   void-3x5-hybrid-mx:
     template: kicad8
     outlines:
@@ -913,19 +1047,19 @@ pcbs:
         what: utility_text
         where:
           ref.aggregate.parts: [matrix_inner_home]
-          shift: [px+2, -29.8]
+          shift: [px+5, -29.8]
         <<: *powered_by_ergogen
       ergogen_logo:
         what: utility_ergogen_logo
         where:
           ref.aggregate.parts: [matrix_inner_home]
-          shift: [px-1, -33.5]
+          shift: [px+2, -33.5]
         params:
           reversible: true
       oshw_logo:
         what: logo_oshw
         where:
           - ref: matrix_inner_home
-            shift: [px+5, -33.5]
+            shift: [px+8, -33.5]
         params:
           reversible: true
