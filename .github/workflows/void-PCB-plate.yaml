@@ -21,23 +21,23 @@ jobs:
       uses: INTI-CMNB/KiBot@v1.8.1
       with:
         config: .kibot.yaml
-        dir: case/plate/bottom-plate/gerber
-        board: case/plate/bottom-plate/bottom-plate.kicad_pcb
-        schema: case/plate/bottom-plate/bottom-plate.kicad_sch
+        dir: case/plates/bottom-plate/gerber
+        board: case/plates/bottom-plate/bottom-plate.kicad_pcb
+        schema: case/plates/bottom-plate/bottom-plate.kicad_sch
 
     - name: Generate gerber for VOID Top plate
       uses: INTI-CMNB/KiBot@v1.8.1
       with:
         config: .kibot.yaml
-        dir: case/plate/top-plate/gerber
-        board: case/plate/top-plate/top-plate.kicad_pcb
+        dir: case/plates/top-plate/gerber
+        board: case/plates/top-plate/top-plate.kicad_pcb
 
     - name: Generate gerber for VOID Top plate hybrid
       uses: INTI-CMNB/KiBot@v1.8.1
       with:
         config: .kibot.yaml
-        dir: case/plate/top-plate-hybrid/gerber
-        board: case/plate/top-plate-hybrid/top-plate-hybrid.kicad_pcb
+        dir: case/plates/top-plate-hybrid/gerber
+        board: case/plates/top-plate-hybrid/top-plate-hybrid.kicad_pcb
 
     - name: Zip Gerber files
       run: |
