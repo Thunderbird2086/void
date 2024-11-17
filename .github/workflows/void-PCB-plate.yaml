@@ -1,0 +1,66 @@
+name: void PCB Plates
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+*'
+
+  workflow_dispatch:
+
+jobs:
+  KiBot-Generation:
+    runs-on: ubuntu-latest  # Don't change
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Generate gerber for VOID Bottom plate
+      uses: INTI-CMNB/KiBot@v1.8.1
+      with:
+        config: .kibot.yaml
+        dir: case/plate/bottom-plate/gerber
+        board: case/plate/bottom-plate/bottom-plate.kicad_pcb
+        schema: case/plate/bottom-plate/bottom-plate.kicad_sch
+
+    - name: Generate gerber for VOID Top plate
+      uses: INTI-CMNB/KiBot@v1.8.1
+      with:
+        config: .kibot.yaml
+        dir: case/plate/top-plate/gerber
+        board: case/plate/top-plate/top-plate.kicad_pcb
+
+    - name: Generate gerber for VOID Top plate hybrid
+      uses: INTI-CMNB/KiBot@v1.8.1
+      with:
+        config: .kibot.yaml
+        dir: case/plate/top-plate-hybrid/gerber
+        board: case/plate/top-plate-hybrid/top-plate-hybrid.kicad_pcb
+
+      uses: INTI-CMNB/KiBot@v1.8.1
+      with:
+        config: .kibot.yaml
+
+      uses: INTI-CMNB/KiBot@v1.8.1
+      with:
+        config: .kibot.yaml
+
+      uses: INTI-CMNB/KiBot@v1.8.1
+      with:
+        config: .kibot.yaml
+
+    - name: Zip Gerber files
+      run: |
+          zip -r --junk-paths void-bottom-plate.zip case/plate/bottom-plate/gerber
+          zip -r --junk-paths void-top-plate.zip case/plate/top-plate/gerber
+          zip -r --junk-paths void-top-plate-hybrid.zip case/plate/top-plate-hybrid/gerber
+
+    - name: GH Release
+      uses: softprops/action-gh-release@v0.1.15
+      with:
+        files: "*.zip"
+        draft: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
