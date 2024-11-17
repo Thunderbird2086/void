@@ -389,6 +389,9 @@ filled_zone: &filled_zone
     params:
       side: 'F&B'
       points: [[0, 0], [297, 0], [297, 210], [0, 210]]
+designed_by: &designed_by
+  face: 'Android Robot'
+  text: 'designed by Thunderbird 2086'
 pcb_base: &pcb_base
   <<: *filled_zone
   tb2086:
@@ -400,11 +403,10 @@ pcb_base: &pcb_base
       rotate: -11.5
     params:
       side: 'F'
-      face: 'Android Robot'
+      reversible: true
       width: 1.2
       height: 1.2
-      reversible: true
-      text: 'designed by Thunderbird 2086'
+      <<: *designed_by
   s_powered_by:
     what: utility_text
     where:
@@ -495,6 +497,26 @@ bottom_plate_text: &bottom_plate_text
       knockout: true
       text: 'ON'
 pcbs:
+  hybrid-top-plate:
+    template: kicad8
+    outlines:
+      edge:
+        outline: top_hybrid
+        layer: Edge.Cuts
+    footprints:
+      <<: *filled_zone
+      designed_by:
+        what: utility_text
+        where:
+          - /matrix_ring_bottom/
+        adjust:
+          shift: [7, -8.5]
+        params:
+          side: 'F'
+          reversible: true
+          width: 1.2
+          height: 1.2
+          <<: *designed_by
   top-plate:
     template: kicad8
     outlines:
