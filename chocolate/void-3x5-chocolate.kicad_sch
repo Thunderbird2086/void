@@ -9601,7 +9601,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TB2086_MISC:ProMicro-dn-flipped-rev-unrouted"
+		(property "Footprint" "TB2086_MISC:ProMicro-dn-rev-unrouted"
 			(at 62.992 63.5 0)
 			(effects
 				(font
