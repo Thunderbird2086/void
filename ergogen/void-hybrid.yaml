@@ -259,6 +259,18 @@ outlines:
       bound: false
       fillet: corner
       joints: 2
+    - what: rectangle
+      where:
+        ref: matrix_ring_bottom
+        shift: [0, -1.5]
+      size: [px, py]
+      fillet: corner
+    - what: rectangle
+      where:
+        ref: matrix_middle_bottom
+        shift: [0, -6.5]
+      size: [1.5px, py]
+      fillet: corner
     - "-switches"
   top_outline:
     - "raw"
