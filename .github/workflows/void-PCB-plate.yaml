@@ -23,7 +23,6 @@ jobs:
         config: .kibot.yaml
         dir: case/plates/bottom-plate/gerber
         board: case/plates/bottom-plate/bottom-plate.kicad_pcb
-        schema: case/plates/bottom-plate/bottom-plate.kicad_sch
 
     - name: Generate gerber for VOID Top plate
       uses: INTI-CMNB/KiBot@v1.8.1
@@ -31,6 +30,20 @@ jobs:
         config: .kibot.yaml
         dir: case/plates/top-plate/gerber
         board: case/plates/top-plate/top-plate.kicad_pcb
+
+    - name: Generate gerber for VOID MCU plate
+      uses: INTI-CMNB/KiBot@v1.8.1
+      with:
+        config: .kibot.yaml
+        dir: case/plates/mcu-cover/gerber
+        board: case/plates/mcu-cover/mcu-cover.kicad_pcb
+
+    - name: Generate gerber for VOID Bottom plate with MCU cover
+      uses: INTI-CMNB/KiBot@v1.8.1
+      with:
+        config: .kibot.yaml
+        dir: case/plates/bottom-plate-with-mcu-cover/gerber
+        board: case/plates/bottom-plate-with-mcu-cover/bottom-plate-with-mcu-cover.kicad_pcb
 
     - name: Generate gerber for VOID Top plate hybrid
       uses: INTI-CMNB/KiBot@v1.8.1
