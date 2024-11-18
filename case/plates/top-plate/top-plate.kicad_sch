@@ -5,7 +5,7 @@
 	(uuid "30995ee9-7243-4bcc-85ac-5cdef88f50b6")
 	(paper "A4")
 	(title_block
-		(title "VOID top plate")
+		(title "VOID Top Plate")
 		(date "2024-11-17")
 		(rev "0.5.9")
 	)

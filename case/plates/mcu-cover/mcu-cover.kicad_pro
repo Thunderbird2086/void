@@ -431,7 +431,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "bottom-plate.kicad_pro",
+    "filename": "mcu-cover.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -548,14 +548,14 @@
       "intersheets_ref_show": false,
       "intersheets_ref_suffix": "",
       "junction_size_choice": 3,
-      "label_size_ratio": 0.25,
+      "label_size_ratio": 0.375,
       "operating_point_overlay_i_precision": 3,
       "operating_point_overlay_i_range": "~A",
       "operating_point_overlay_v_precision": 3,
       "operating_point_overlay_v_range": "~V",
       "overbar_offset_ratio": 1.23,
-      "pin_symbol_size": 0.0,
-      "text_offset_ratio": 0.08
+      "pin_symbol_size": 25.0,
+      "text_offset_ratio": 0.15
     },
     "legacy_lib_dir": "",
     "legacy_lib_list": [],
@@ -576,7 +576,7 @@
   },
   "sheets": [
     [
-      "ac1e266f-59f1-40ee-814a-ad97b629a00a",
+      "f2b1dc4e-31bd-423e-9495-0048ab0e78ef",
       "Root"
     ]
   ],

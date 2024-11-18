@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.1
+          "min_clearance": 0.508
         }
       },
       "diff_pair_dimensions": [],
@@ -431,7 +431,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "bottom-plate.kicad_pro",
+    "filename": "bottom-plate-with-mcu-cover.kicad_pro",
     "version": 1
   },
   "net_settings": {

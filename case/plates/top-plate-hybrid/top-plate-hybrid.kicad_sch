@@ -5,9 +5,10 @@
 	(uuid "acb4ef9d-9d9d-4e77-9cd0-67970776ce12")
 	(paper "A4")
 	(title_block
-		(title "VOID top plate hybrid")
+		(title "VOID Top Plate Hybrid")
 		(date "2024-11-17")
 		(rev "0.5.9")
+		(company "Allen Choi")
 	)
 	(lib_symbols)
 	(sheet_instances

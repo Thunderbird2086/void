@@ -23,7 +23,6 @@ jobs:
         config: .kibot.yaml
         dir: case/plates/bottom-plate/gerber
         board: case/plates/bottom-plate/bottom-plate.kicad_pcb
-        schema: case/plates/bottom-plate/bottom-plate.kicad_sch
 
     - name: Generate gerber for VOID Top plate
       uses: INTI-CMNB/KiBot@v1.8.1
@@ -31,6 +30,20 @@ jobs:
         config: .kibot.yaml
         dir: case/plates/top-plate/gerber
         board: case/plates/top-plate/top-plate.kicad_pcb
+
+    - name: Generate gerber for VOID MCU plate
+      uses: INTI-CMNB/KiBot@v1.8.1
+      with:
+        config: .kibot.yaml
+        dir: case/plates/mcu-cover/gerber
+        board: case/plates/mcu-cover/mcu-cover.kicad_pcb
+
+    - name: Generate gerber for VOID Bottom plate with MCU cover
+      uses: INTI-CMNB/KiBot@v1.8.1
+      with:
+        config: .kibot.yaml
+        dir: case/plates/bottom-plate-with-mcu-cover/gerber
+        board: case/plates/bottom-plate-with-mcu-cover/bottom-plate-with-mcu-cover.kicad_pcb
 
     - name: Generate gerber for VOID Top plate hybrid
       uses: INTI-CMNB/KiBot@v1.8.1
@@ -44,6 +57,8 @@ jobs:
           zip -r --junk-paths void-bottom-plate.zip case/plates/bottom-plate/gerber
           zip -r --junk-paths void-top-plate.zip case/plates/top-plate/gerber
           zip -r --junk-paths void-top-plate-hybrid.zip case/plates/top-plate-hybrid/gerber
+          zip -r --junk-paths void-mcu-cover.zip case/plates/mcu-cover/gerber
+          zip -r --junk-paths void-bottom-plate-with-mcu-cover.zip case/plates/bottom-plate-with-mcu-cover/gerber
 
     - name: GH Release
       uses: softprops/action-gh-release@v0.1.15
