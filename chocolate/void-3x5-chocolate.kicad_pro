@@ -666,7 +666,7 @@
       "plot": "gerber",
       "pos_files": "",
       "specctra_dsn": "void-3x5-chocolate.dsn",
-      "step": "void-left.step",
+      "step": "void-choc-left.step",
       "svg": "",
       "vrml": ""
     },
