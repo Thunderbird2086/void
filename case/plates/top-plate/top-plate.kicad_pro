@@ -475,7 +475,7 @@
       "plot": "gerber",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "top-plate.step",
       "svg": "",
       "vrml": ""
     },
