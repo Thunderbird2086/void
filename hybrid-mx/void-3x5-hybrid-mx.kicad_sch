@@ -8545,7 +8545,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_CHOC_HS"
+		(property "Value" "SW_MX_HS"
 			(at 175.133 106.553 0)
 			(effects
 				(font
@@ -8553,7 +8553,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TB2086_KEYSWITCH:SW_choc_v1_v2_HS_1u_reversible"
+		(property "Footprint" "TB2086_KEYSWITCH:SW_MX_HS_1u_reversible"
 			(at 170.942 106.172 0)
 			(effects
 				(font
@@ -11071,7 +11071,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_CHOC_HS"
+		(property "Value" "SW_MX_HS"
 			(at 192.913 106.553 0)
 			(effects
 				(font
@@ -11079,7 +11079,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TB2086_KEYSWITCH:SW_choc_v1_v2_HS_1u_reversible"
+		(property "Footprint" "TB2086_KEYSWITCH:SW_MX_HS_1u_reversible"
 			(at 188.722 106.172 0)
 			(effects
 				(font
@@ -14299,7 +14299,7 @@
 				)
 			)
 		)
-		(property "Value" "SW_CHOC_HS"
+		(property "Value" "SW_MX_HS"
 			(at 210.693 106.553 0)
 			(effects
 				(font
@@ -14307,7 +14307,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TB2086_KEYSWITCH:SW_choc_v1_v2_HS_1.5u_reversible"
+		(property "Footprint" "TB2086_KEYSWITCH:SW_MX_HS_1.5u_reversible"
 			(at 206.502 106.172 0)
 			(effects
 				(font
