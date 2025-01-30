@@ -38,8 +38,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 0.85,
-          "width": 0.6
+          "height": 0.8,
+          "width": 2.4
         },
         "silk_line_width": 0.12,
         "silk_text_italic": false,
@@ -447,7 +447,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "void-3x5-cherry-mx.kicad_pro",
+    "filename": "void-3x5-hybrid-mx.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -662,7 +662,7 @@
     "last_paths": {
       "gencad": "",
       "idf": "",
-      "netlist": "void-3x5-cherry-mx.net",
+      "netlist": "void-3x5-hybrid-mx.net",
       "plot": "gerber",
       "pos_files": "",
       "specctra_dsn": "void-3x5-cherry-mx-reversible.dsn",
