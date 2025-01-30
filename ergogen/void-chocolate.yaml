@@ -1,6 +1,6 @@
 meta:
   author: Allen Choi
-  version: 0.5.9
+  version: 0.6.0
   engine: 4.1.0
 units:
   # proxy spacing
@@ -334,7 +334,7 @@ combined:
     - top
     - "lcd_cover"
 void_version: &void_version
-  text: 'VOID v0.5.8'
+  text: 'VOID v0.6.0'
   side: 'F'
   reversible: true
   face: 'Android Robot'
@@ -352,6 +352,9 @@ filled_zone: &filled_zone
     params:
       side: 'F&B'
       points: [[0, 0], [297, 0], [297, 210], [0, 210]]
+designed_by: &designed_by
+  face: 'Android Robot'
+  text: 'designed by Thunderbird 2086'
 pcb_base: &pcb_base
   <<: *filled_zone
   tb2086:
@@ -363,11 +366,10 @@ pcb_base: &pcb_base
       rotate: -11.5
     params:
       side: 'F'
-      face: 'Android Robot'
+      reversible: true
       width: 1.2
       height: 1.2
-      reversible: true
-      text: 'designed by Thunderbird 2086'
+      <<: *designed_by
   s_powered_by:
     what: utility_text
     where:
@@ -633,6 +635,7 @@ pcbs:
         params:
           from: LED_UNDER_GLOW
           to: L19_L20
+          side: 'B'
           show_3d: true
       bl2:
         what: "led_sk6812mini_35x35"
@@ -643,6 +646,7 @@ pcbs:
         params:
           from: L19_L20
           to: L20_L21
+          side: 'B'
           show_3d: true
       bl3 :
         what: "led_sk6812mini_35x35"
@@ -653,6 +657,7 @@ pcbs:
         params:
           from: L20_L21
           to: L21_L22
+          side: 'B'
           show_3d: true
       bl4 :
         what: "led_sk6812mini_35x35"
@@ -663,6 +668,7 @@ pcbs:
         params:
           from: L21_L22
           to: L22_L23
+          side: 'B'
           show_3d: true
       bl5 :
         what: "led_sk6812mini_35x35"
@@ -673,6 +679,7 @@ pcbs:
         params:
           from: L22_L23
           to: L23_L24
+          side: 'B'
           show_3d: true
       bl6 :
         what: "led_sk6812mini_35x35"
@@ -683,6 +690,7 @@ pcbs:
         params:
           from: L23_24
           to: END
+          side: 'B'
           show_3d: true
       mcu:
         what: nice_nano
@@ -760,19 +768,23 @@ pcbs:
           side: 'F'
           P1: is_left_hand
           P2: GND
-      trrs:
-        what: trrs_pj_320a
+      usb_c_comm:
+        what: usb-c-6p-f6c16
         where:
           - ref: matrix_inner_home
-            shift: [38.5, 12.8]
+            shift: [39.71, 7]
+            rotate: 90
         params:
           show_3d: true
           reversible: true
           side: 'F'
-          A: jp_scl
-          C: GND
-          B: data_sda
-          D: VCC
+          A5: jp_scl
+          B5: data_sda
+          A12: GND
+          B12: GND
+          A9: VCC
+          B9: VCC
+          S1: GND
       R_sda:
         what: r_smd_0805_2012m
         where:
@@ -821,7 +833,7 @@ pcbs:
         what: SW_smt_20_40_35
         where:
           - ref: matrix_inner_home
-            shift: [41.5, -4]
+            shift: [41.5, -3]
             rotate: -90
         params:
           reversible: true
@@ -829,34 +841,44 @@ pcbs:
           side: 'F'
           P1: GND
           P2: RST
-      power_btn:
+      power_btn_f:
         what: SW_SPDT_PCM12
         where:
           - ref: matrix_inner_home
-            shift: [40.5, -13]
+            shift: [40.5, -11]
             rotate: 90
         params:
-          reversible: true
           show_3d: true
           side: 'F'
           P1: BAT
           P2: BAT_IN
-      mcu_bat_con:
-        what: ezmate_78171-1x02
+      power_btn_b:
+        what: SW_SPDT_PCM12
         where:
           - ref: matrix_inner_home
-            shift: [34, -15]
+            shift: [40.5, -11]
+            rotate: 90
+        params:
+          side: 'B'
+          P3: BAT
+          P2: BAT_IN
+      mcu_bat_con:
+        what: ph_1x02_smd
+        where:
+          - ref: matrix_inner_home
+            shift: [36.15, -22.5]
         params:
           reversible: true
           show_3d: true
           side: 'F'
+          MP: GND
           P1: GND
           P2: BAT_IN
       mcu_bat_text:
         what: utility_text
         where:
           - ref: matrix_inner_home
-            shift: [34, -18.8]
+            shift: [36.15, -28.5]
         params:
           side: 'B'
           reversible: true
@@ -865,66 +887,60 @@ pcbs:
           height: 1
           knockout: true
           text: '-MCU+'
-      chg_led_con:
-        what: te_0-1734839-5_1x05-1mp_p05mm
-        where:
-          - ref: matrix_inner_home
-            shift: [36, -22.5]
-        params:
-          reversible: true
-          show_3d: true
-          side: 'B'
-          P1: BAT
-          P2: STDBY_OUT
-          P3: SIG_IN
-          P4: CHGRG_OUT
-          P5: GND
-          MP: GND
-      chg_led_text:
-        what: utility_text
-        where:
-          - ref: matrix_inner_home
-            shift: [36, -27.5]
-        params:
-          side: 'B'
-          reversible: true
-          face: 'KiCad Font'
-          width: 1
-          height: 1
-          knockout: true
-          text: 'CHARGER'
       bat_con:
-        what: ezmate_78171-1x02
+        what: pogo_pin_1x02_p2.54mm
         where:
           - ref: matrix_inner_home
-            shift: [37, -31]
+            shift: [35.9, -13.5]
             rotate: -90
         params:
-          reversible: true
-          show_3d: true
           side: 'B'
           P1: GND
           P2: BAT
-      bat_text:
+      bat_text_f:
         what: utility_text
         where:
           - ref: matrix_inner_home
-            shift: [41, -31]
+            shift: [33.9, -13.5]
             rotate: -90
         params:
           side: 'F'
-          reversible: true
+          reversible: false
           face: 'KiCad Font'
           width: 1
           height: 1
           knockout: true
-          text: '-BAT+'
+          text: '- +'
+      bat_text_b:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [33.9, -13.5]
+            rotate: -90
+        params:
+          side: 'B'
+          reversible: false
+          face: 'KiCad Font'
+          width: 1
+          height: 1
+          knockout: true
+          text: '- +'
+      led_con:
+        what: pogo_pin_1x03_p2.54mm
+        where:
+          - ref: matrix_inner_home
+            shift: [36.15, -31.5]
+        params:
+          side: 'F'
+          P1: STDBY_OUT
+          P2: SIG_IN
+          P3: CHGRG_OUT
       chg_led_f:
         what: led_0603_1608m
         where:
           - ref: matrix_inner_home
-            shift: [42, -23.8]
-            rotate: 90
+            shift: [42.1, -18.3]
+            rotate: -90
         params:
           show_3d: true
           side: 'F'
@@ -934,31 +950,31 @@ pcbs:
         what: led_0603_1608m
         where:
           - ref: matrix_inner_home
-            shift: [42, -20.3]
+            shift: [42.1, -18.3]
             rotate: 90
         params:
           side: 'B'
           from: SIG_IN
           to: CHGRG_OUT
-      stdby_led_b:
-        what: led_0603_1608m
-        where:
-          - ref: matrix_inner_home
-            shift: [42, -23.8]
-            rotate: -90
-        params:
-          side: 'B'
-          from: SIG_IN
-          to: STDBY_OUT
       stdby_led_f:
         what: led_0603_1608m
         where:
           - ref: matrix_inner_home
-            shift: [42, -20.3]
-            rotate: -90
+            shift: [42.1, -21.8]
+            rotate: 90
         params:
           show_3d: true
           side: 'F'
+          from: SIG_IN
+          to: STDBY_OUT
+      stdby_led_b:
+        what: led_0603_1608m
+        where:
+          - ref: matrix_inner_home
+            shift: [42.1, -21.8]
+            rotate: -90
+        params:
+          side: 'B'
           from: SIG_IN
           to: STDBY_OUT
       <<: *pcb_base
