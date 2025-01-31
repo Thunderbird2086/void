@@ -2,6 +2,7 @@ meta:
   author: Allen Choi
   version: 0.6.0
   engine: 4.1.0
+  project: VOID 3x5 Choc
 units:
   # proxy spacing
   kx: U
@@ -397,25 +398,64 @@ bottom_text_pos: &bottom_text_pos
     - /cluster_layer_thumb/
   adjust:
     shift: [0, -8]
-bottom_plate_text: &bottom_plate_text
+bottom_plate_text_f: &bottom_plate_text_f
   update:
     what: utility_text
     where:
       - ref: matrix_inner_home
-        shift: [38.5, -4]
+        shift: [38.5, -3]
+    params:
+      side: 'B'
+      face: 'KiCad Font'
+      width: 1.5
+      height: 1.5
+      knockout: true
+      mirrored: true
+      text: 'UPDATE'
+  ON:
+    what: utility_text
+    where:
+      - ref: matrix_inner_home
+        shift: [41.2, -8.5]
+    params:
+      side: 'B'
+      face: 'KiCad Font'
+      width: 1.5
+      height: 1.5
+      knockout: true
+      mirrored: true
+      text: 'ON'
+  OFF:
+    what: utility_text
+    where:
+      - ref: matrix_inner_home
+        shift: [40.5, -13.5]
+    params:
+      side: 'B'
+      face: 'KiCad Font'
+      width: 1.5
+      height: 1.5
+      knockout: true
+      mirrored: true
+      text: 'OFF'
+bottom_plate_text_r: &bottom_plate_text_r
+  update:
+    what: utility_text
+    where:
+      - ref: matrix_inner_home
+        shift: [38.5, -3]
     params:
       side: 'F'
       face: 'KiCad Font'
       width: 1.5
       height: 1.5
-      reversible: true
       knockout: true
       text: 'UPDATE'
-  ON_f:
+  ON:
     what: utility_text
     where:
       - ref: matrix_inner_home
-        shift: [41.2, -9.5]
+        shift: [41.2, -8.5]
     params:
       side: 'F'
       face: 'KiCad Font'
@@ -423,23 +463,11 @@ bottom_plate_text: &bottom_plate_text
       height: 1.5
       knockout: true
       text: 'ON'
-  OFF_b:
+  OFF:
     what: utility_text
     where:
       - ref: matrix_inner_home
-        shift: [40.45, -9.5]
-    params:
-      side: 'B'
-      face: 'KiCad Font'
-      width: 1.5
-      height: 1.5
-      knockout: true
-      text: 'OFF'
-  OFF_f:
-    what: utility_text
-    where:
-      - ref: matrix_inner_home
-        shift: [40.5, -16.5]
+        shift: [40.5, -13.5]
     params:
       side: 'F'
       face: 'KiCad Font'
@@ -447,18 +475,9 @@ bottom_plate_text: &bottom_plate_text
       height: 1.5
       knockout: true
       text: 'OFF'
-  ON_b:
-    what: utility_text
-    where:
-      - ref: matrix_inner_home
-        shift: [41.2, -16.5]
-    params:
-      side: 'B'
-      face: 'KiCad Font'
-      width: 1.5
-      height: 1.5
-      knockout: true
-      text: 'ON'
+bottom_plate_text: &bottom_plate_text
+  <<: *bottom_plate_text_f
+  <<: *bottom_plate_text_r
 pcbs:
   top-plate:
     template: kicad8
@@ -468,7 +487,7 @@ pcbs:
         layer: Edge.Cuts
     footprints:
       <<: *pcb_base
-  bottom-plate-charger:
+  bottom-plate-charger-left:
     template: kicad8
     outlines:
       edge:
@@ -476,7 +495,7 @@ pcbs:
         layer: Edge.Cuts
     footprints:
       <<: *pcb_base
-      <<: *bottom_plate_text
+      <<: *bottom_plate_text_f
       usb_c:
         what: "usb-c-6p-c31m17"
         adjust:
@@ -486,11 +505,155 @@ pcbs:
         params:
           show_3d: true
           side: 'F'
-      chrg_f:
+      bat_con:
+        what: pogo_tag_1x02_p2.54mm
+        where:
+          - ref: matrix_inner_home
+            shift: [35.9, -13.5]
+            rotate: -90
+        params:
+          side: 'F'
+          P1: GND
+          P2: BAT
+      bat_text_f:
         what: utility_text
         where:
           - ref: matrix_inner_home
-            shift: [39.7, -20.3]
+            shift: [33.9, -13.5]
+            rotate: -90
+        params:
+          side: 'F'
+          reversible: false
+          face: 'KiCad Font'
+          width: 1
+          height: 1
+          knockout: true
+          text: '- +'
+      led_con:
+        what: pogo_tag_1x03_p2.54mm
+        where:
+          - ref: matrix_inner_home
+            shift: [36.15, -31.5]
+        params:
+          side: 'F'
+          P3: STDBY_OUT
+          P2: SIG_IN
+          P1: CHGRG_OUT
+      chg_led_f:
+        what: led_0603_1608m
+        where:
+          - ref: matrix_inner_home
+            shift: [42.1, -18.3]
+            rotate: -90
+        params:
+          show_3d: true
+          side: 'F'
+          from: SIG_IN
+          to: CHGRG_OUT
+      chrg_b:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [39.7, -18.3]
+        params:
+          side: 'B'
+          face: 'KiCad Font'
+          width: 1.5
+          height: 1.5
+          knockout: true
+          mirrored: true
+          text: 'CHRG'
+      stdby_led_f:
+        what: led_0603_1608m
+        where:
+          - ref: matrix_inner_home
+            shift: [42.1, -21.8]
+            rotate: 90
+        params:
+          side: 'F'
+          from: SIG_IN
+          to: STDBY_OUT
+      stdby_b:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [39.2, -21.8]
+        params:
+          side: 'B'
+          face: 'KiCad Font'
+          width: 1.5
+          height: 1.5
+          knockout: true
+          mirrored: true
+          text: 'STDBY'
+  bottom-plate-charger-right:
+    template: kicad8
+    outlines:
+      edge:
+        outline: bottom
+        layer: Edge.Cuts
+    footprints:
+      <<: *pcb_base
+      <<: *bottom_plate_text_r
+      usb_c:
+        what: "usb-c-6p-c31m17"
+        adjust:
+          ref.aggregate.parts: [matrix_inner_home]
+          shift: [px+2, 10.5]
+          rotate: 180
+        params:
+          show_3d: true
+          side: 'B'
+      bat_con:
+        what: pogo_tag_1x02_p2.54mm
+        where:
+          - ref: matrix_inner_home
+            shift: [35.9, -13.5]
+            rotate: -90
+        params:
+          side: 'B'
+          P1: GND
+          P2: BAT
+      bat_text_b:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [33.9, -13.5]
+            rotate: -90
+        params:
+          side: 'B'
+          reversible: false
+          face: 'KiCad Font'
+          width: 1
+          height: 1
+          knockout: true
+          text: '- +'
+      led_con:
+        what: pogo_tag_1x03_p2.54mm
+        where:
+          - ref: matrix_inner_home
+            shift: [36.15, -31.5]
+        params:
+          side: 'B'
+          P3: STDBY_OUT
+          P2: SIG_IN
+          P1: CHGRG_OUT
+      chg_led_f:
+        what: led_0603_1608m
+        where:
+          - ref: matrix_inner_home
+            shift: [42.1, -18.3]
+            rotate: -90
+        params:
+          show_3d: true
+          side: 'B'
+          from: SIG_IN
+          to: CHGRG_OUT
+      chrg_b:
+        what: utility_text
+        where:
+          - ref: matrix_inner_home
+            shift: [39.7, -18.3]
         params:
           side: 'F'
           face: 'KiCad Font'
@@ -498,11 +661,21 @@ pcbs:
           height: 1.5
           knockout: true
           text: 'CHRG'
-      stdby_f:
+      stdby_led_b:
+        what: led_0603_1608m
+        where:
+          - ref: matrix_inner_home
+            shift: [42.1, -21.8]
+            rotate: -90
+        params:
+          side: 'B'
+          from: SIG_IN
+          to: STDBY_OUT
+      stdby_b:
         what: utility_text
         where:
           - ref: matrix_inner_home
-            shift: [39.2, -23.8]
+            shift: [39.2, -21.8]
         params:
           side: 'F'
           face: 'KiCad Font'
@@ -932,9 +1105,9 @@ pcbs:
             shift: [36.15, -31.5]
         params:
           side: 'F'
-          P1: STDBY_OUT
+          P3: STDBY_OUT
           P2: SIG_IN
-          P3: CHGRG_OUT
+          P1: CHGRG_OUT
       chg_led_f:
         what: led_0603_1608m
         where:
