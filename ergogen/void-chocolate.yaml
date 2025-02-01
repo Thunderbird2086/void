@@ -262,6 +262,8 @@ text_defs: &text_defs
   designed_by: &designed_by
     <<: *base_text_android
     params.text: 'designed by Thunderbird 2086'
+    params.width: 1.2
+    params.height: 1.2
 
   base_update: &base_update
     <<: *base_text
@@ -306,8 +308,6 @@ pcb_base: &pcb_base
     <<: *designed_by
     where: [{ref: matrix_middle_bottom}]
     adjust: {shift: [3.5, -18], rotate: -11.5}
-    params.width: 1.2
-    params.height: 1.2
 
   s_powered_by:
     where:
@@ -442,6 +442,15 @@ footprint_components:
       shift: [px+2, 10.5]
       rotate: 180
 
+  base_diode: &base_diode
+        what: d_1206_3216m
+        params:
+          show_3d: true
+          side: 'B'
+          reversible: true
+          from: "{{colrow}}" # from
+          to: "{{row_net}}" # to
+
 base_bottom_plate: &base_bottom_plate
   template: kicad8
   outlines:
@@ -523,7 +532,6 @@ pcbs:
           ref.aggregate.parts: [matrix_inner_home]
           shift: [px+2, -3.8]
       powered_by:
-        what: utility_text
         where:
           ref.aggregate.parts: [matrix_inner_home]
           shift: [px+2, -23.3]
@@ -575,17 +583,11 @@ pcbs:
           - ref: cluster_space_thumb
         params: {P1: "{{colrow}}", P2: "{{column_net}}"}
       diode:
-        what: d_1206_3216m
+        <<: *base_diode
         where:
           - /matrix_.*/
           - /cluster_.*/
         adjust: {shift: [-7.5, 2.5], rotate: -90}
-        params:
-          show_3d: true
-          side: 'B'
-          reversible: true
-          from: "{{colrow}}" # from
-          to: "{{row_net}}" # to
       per_key_led:
         what: "led_sk6812mini_e"
         where:
@@ -890,7 +892,6 @@ pcbs:
         where:
           ref.aggregate.parts: [matrix_inner_home]
           shift: [px+5, -29.8]
-        what: utility_text
         <<: *powered_by
       ergogen_logo:
         what: utility_ergogen_logo

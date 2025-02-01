@@ -69,6 +69,9 @@ outlines:
 
   mcu_body: &mcu_body
     - what: rectangle
+      where: {ref: matrix_inner_top}
+      size: [px, py]
+    - what: rectangle
       where: {ref: matrix_inner_top, shift: [px, -1.8py]}
       size: [2.3px, 3py]
       fillet: corner
@@ -188,6 +191,7 @@ outlines:
         shift: [0, -6.5]
       size: [1.5px, py]
       fillet: corner
+      joints: 2
     - "-switches"
 
   top_outline:
@@ -217,13 +221,6 @@ outlines:
       radius: 1.15
     right: {<<: *lcd_screw_base, where: [{ref: cluster_space_thumb, shift: [20.4, 2.4]}]}
 
-  lcd_screw:
-    $extends: outlines.lcd_screw_holes
-    left:
-      radius: 2.55
-    right:
-      radius: 2.55
-
   mounting_holes:
     $extends: outlines.screw_holes
     top_left:
@@ -250,13 +247,13 @@ outlines:
          shift: [0, -10.08]
       size: 3.6
 
-  top:
-    - "top_outline"
+  top_hybrid:
+    - "top_outline_mx"
     - "-switches"
     - "-screw_holes"
 
-  top_hybrid:
-    - "top_outline_mx"
+  top:
+    - "top_outline"
     - "-switches"
     - "-screw_holes"
 
@@ -279,62 +276,92 @@ outlines:
     - mcu_body
     - "-top_expand"
     - "-lcd_screw_holes"
-#    - "-lcd_screw"
+
 combined:
     - top
     - "lcd_cover"
 
 # Common text definitions
 text_defs: &text_defs
-  base_text_params: &base_text_params
-    face: 'KiCad Font'
-    width: 1.5
-    height: 1.5
-    knockout: true
+  base_text: &base_text
+    what: utility_text
+    params:
+      face: 'KiCad Font'
+      width: 1.5
+      height: 1.5
+      knockout: true
 
-  base_small_text_params: &base_small_text_params
-    face: 'KiCad Font'
-    width: 1
-    height: 1
-    knockout: true
+  base_text_small: &base_text_small
+    <<: *base_text
+    params.width: 1
+    params.height: 1
+
+  base_text_android: &base_text_android
+    what: utility_text
+    params: {side: 'F', reversible: true, face: 'Android Robot'}
 
   void_version: &void_version
-    text: 'VOID v0.6.0'
-    side: 'F'
-    reversible: true
-    face: 'Android Robot'
+    <<: *base_text_android
+    params.text: 'VOID v0.6.0'
   
   powered_by: &powered_by
-    params: &powered_params
-      side: 'F'
-      face: 'KiCad Font'
-      width: 1
-      height: 1
-      reversible: true
-      text: 'Powered By Ergogen'
+    <<: *base_text_small
+    params.side: 'F'
+    params.knockout: false
+    params.reversible: true
+    params.text: 'Powered By Ergogen'
 
   designed_by: &designed_by
-    face: 'Android Robot'
-    reversible: true
-    text: 'designed by Thunderbird 2086'
-    
+    <<: *base_text_android
+    params.text: 'designed by Thunderbird 2086'
+    params.width: 1.2
+    params.height: 1.2
+
+  base_update: &base_update
+    <<: *base_text
+    where: [{ref: matrix_inner_home, shift: [38.5, -3]}]
+    params.text: 'UPDATE'
+
+  base_on: &base_on
+    <<: *base_text
+    where: [{ref: matrix_inner_home, shift: [41.2, -8.5]}]
+    params.text: 'ON'
+
+  base_off: &base_off
+    <<: *base_text
+    where: [{ref: matrix_inner_home, shift: [40.5, -13.5]}]
+    params.text: 'OFF'
+
+  base_chrg: &base_chrg
+    <<: *base_text
+    where: [{ref: matrix_inner_home, shift: [39.7, -18.3]}]
+    params.text: 'CHRG'
+
+  base_stdby: &base_stdby
+    <<: *base_text
+    where: [{ref: matrix_inner_home, shift: [39.2, -21.8]}]
+    params.text: 'STDBY'
+
+  base_bat: &base_bat
+    <<: *base_text_small
+    where: [{ref: matrix_inner_home, shift: [33.9, -13.5], rotate: -90}]
+    params.text: '- +'
+
 filled_zone: &filled_zone
   filled_zones:
     what: utility_filled_zone
     params:
       side: 'F&B'
       points: [[0, 0], [297, 0], [297, 210], [0, 210]]
-  
+
 pcb_base: &pcb_base
   <<: *filled_zone
   tb2086:
-    what: utility_text
+    <<: *designed_by
     where: [{ref: matrix_middle_bottom}]
     adjust: {shift: [3.5, -18], rotate: -11.5}
-    params: {<<: *designed_by, side: 'F', width: 1.2, height: 1.2}
 
   s_powered_by:
-    what: utility_text
     where:
       - /cluster_space_thumb/
     adjust:
@@ -342,12 +369,14 @@ pcb_base: &pcb_base
     <<: *powered_by
 
   void_version_small:
-    what: utility_text
+    <<: *void_version
     where: [{ref: matrix_pinky_bottom}]
     adjust: {shift: [0, -9]}
-    params: {<<: *void_version, width: 1.2, height: 1.2}
+    params.width: 1.2
+    params.height: 1.2
       
-bottom_text_pos: &bottom_text_pos
+base_bottom_text: &base_bottom_text
+  what: utility_text
   where:
     - /matrix_ring.*/
     - /matrix_middle_home/
@@ -357,79 +386,67 @@ bottom_text_pos: &bottom_text_pos
     - /cluster_layer_thumb/
   adjust:
     shift: [0, -8]
-    
-text_defs_bottom:    
-  base_update: &base_update
-    what: utility_text
-    where: [{ref: matrix_inner_home, shift: [38.5, -3]}]
 
-  base_on: &base_on
-    what: utility_text
-    where: [{ref: matrix_inner_home, shift: [41.2, -8.5]}]
+text_bottom_plate:
+  front: &bottom_plate_text_f
+    UPDATE:
+      <<: *base_update
+      params.side: 'B'
+      params.mirrored: true
+    ON:
+      <<: *base_on
+      params.side: 'B'
+      params.mirrored: true
+    OFF:
+      <<: *base_off
+      params.side: 'B'
+      params.mirrored: true
 
-  base_off: &base_off
-    what: utility_text
-    where: [{ref: matrix_inner_home, shift: [40.5, -13.5]}]
-
-  base_bat: &base_bat
-    what: utility_text
-    where: [{ref: matrix_inner_home, shift: [33.9, -13.5], rotate: -90}]
-
-  base_chrg: &base_chrg
-    what: utility_text
-    where: [{ref: matrix_inner_home, shift: [39.7, -18.3]}]
-
-  base_stdby: &base_stdby
-    what: utility_text
-    where: [{ref: matrix_inner_home, shift: [39.2, -21.8]}]
-
-
-bottom_plate_text_f: &bottom_plate_text_f
-  UPDATE:
-    <<: *base_update
-    params: {<<: *base_text_params, text: 'UPDATE', side: 'B', mirrored: true}
-  ON:
-    <<: *base_on
-    params: {<<: *base_text_params, text: 'ON', side: 'B', mirrored: true}
-  OFF:
-    <<: *base_off
-    params: {<<: *base_text_params, text: 'OFF', side: 'B', mirrored: true}
-
-bottom_plate_text_r: &bottom_plate_text_r
-  UPDATE_:
-    <<: *base_update
-    params: {<<: *base_text_params, text: 'UPDATE', side: 'F'}
-  ON_:
-    <<: *base_on
-    params: {<<: *base_text_params, text: 'ON', side: 'F'}
-  OFF_:
-    <<: *base_off
-    params: {<<: *base_text_params, text: 'OFF', side: 'F'}
+  rear: &bottom_plate_text_r
+    UPDATE_:
+      <<: *base_update
+      params.side: 'F'
+      params.mirrored: false
+    ON_:
+      <<: *base_on
+      params.side: 'F'
+      params.mirrored: false
+    OFF_:
+      <<: *base_off
+      params.side: 'F'
+      params.mirrored: false
 
 bottom_plate_text: &bottom_plate_text
   <<: [*bottom_plate_text_f, *bottom_plate_text_r]
 
-bottom_plate_charger_text_f: &bottom_plate_charger_text_f
-   bat: 
-     <<: *base_bat
-     params: {<<: *base_small_text_params, text: '- +', side: 'F'}
-   chrg: 
-     <<: *base_chrg
-     params: {<<: *base_text_params, text: 'CHRG', side: 'F'}
-   stdby:
-     <<: *base_stdby
-     params: {<<: *base_text_params, text: 'STDBY', side: 'F'}
+text_charger_plate:
+  front: &bottom_plate_charger_text_f
+    bat: 
+      <<: *base_bat
+      params.side: 'B'
+      params.mirrored: false
+    chrg: 
+      <<: *base_chrg
+      params.side: 'F'
+      params.mirrored: false
+    stdby:
+      <<: *base_stdby
+      params.side: 'F'
+      params.mirrored: false
 
-bottom_plate_charger_text_r: &bottom_plate_charger_text_r
-   bat: 
-     <<: *base_bat
-     params: {<<: *base_small_text_params, text: '- +', side: 'B', mirrored: true}
-   chrg: 
-     <<: *base_chrg
-     params: {<<: *base_text_params, text: 'CHRG', side: 'B', mirrored: true}
-   stdby:
-     <<: *base_stdby
-     params: {<<: *base_text_params, text: 'STDBY', side: 'B', mirrored: true}
+  rear: &bottom_plate_charger_text_r
+    bat: 
+      <<: *base_bat
+      params.side: 'F'
+      params.mirrored: false
+    chrg: 
+      <<: *base_chrg
+      params.side: 'B'
+      params.mirrored: true
+    stdby:
+      <<: *base_stdby
+      params.side: 'B'
+      params.mirrored: true
 
 footprint_components:
   base_bat_con: &base_bat_con
@@ -437,127 +454,128 @@ footprint_components:
       - ref: matrix_inner_home
         shift: [35.9, -13.5]
         rotate: -90
-  base_bat_con_params: &base_bat_con_params
-    P1: GND
-    P2: BAT
+    params: {P1: GND, P2: BAT}
+
   base_led_con: &base_led_con
     where:
       - ref: matrix_inner_home
         shift: [36.15, -31.5]
-  base_led_con_params: &base_led_con_params
-    P3: STDBY_OUT
-    P2: SIG_IN
-    P1: CHGRG_OUT
+    params: {P3: STDBY_OUT, P2: SIG_IN, P1: CHGRG_OUT}
+
   base_chrg_led: &base_chrg_led
     what: led_0603_1608m
     where:
       - ref: matrix_inner_home
         shift: [42.1, -18.3]
         rotate: -90
-  base_chrg_led_params: &base_chrg_led_params
-    show_3d: true
-    from: SIG_IN
-    to: CHGRG_OUT
+    params: {from: SIG_IN, to: CHGRG_OUT, side: 'F', show_3d: true}
+
   base_stdby_led: &base_stdby_led
     what: led_0603_1608m
     where:
       - ref: matrix_inner_home
         shift: [42.1, -21.8]
         rotate: 90
-  base_stdby_led_params: &base_stdby_led_params
-    show_3d: true
-    from: SIG_IN
-    to: STDBY_OUT
+    params: {from: SIG_IN, to: STDBY_OUT, side: 'F', show_3d: true}
+
   base_power_btn: &base_power_btn
     what: SW_SPDT_PCM12
     where:
       - ref: matrix_inner_home
         shift: [40.5, -11]
         rotate: 90
-  base_power_btn_params: &base_power_btn_params
-    show_3d: true
-    P2: BAT_IN
+    params: {P2: BAT_IN, show_3d: true}
+
   base_usb_c_chrg: &base_usb_c_chrg
     what: "usb-c-6p-c31m17"
+    params: {show_3d: true}
     adjust:
       ref.aggregate.parts: [matrix_inner_home]
       shift: [px+2, 10.5]
       rotate: 180
 
+  base_diode: &base_diode
+        what: d_1206_3216m
+        params:
+          show_3d: true
+          side: 'B'
+          reversible: true
+          from: "{{colrow}}" # from
+          to: "{{row_net}}" # to
+
+base_bottom_plate: &base_bottom_plate
+  template: kicad8
+  outlines:
+    edge: {outline: bottom, layer: Edge.Cuts}
+
 pcbs:
   top-plate:
     template: kicad8
     outlines:
-      edge: {outline: bottom, layer: Edge.Cuts}
+      edge: {outline: top, layer: Edge.Cuts}
     footprints:
       <<: *pcb_base
 
-  bottom-plate-charger:
-    template: kicad8
-    outlines:
-      edge: {outline: bottom, layer: Edge.Cuts}
+  bottom-plate:
+    <<: *base_bottom_plate
+    footprints:
+      <<: *pcb_base
+      <<: *bottom_plate_text
+
+  bottom-plate-charger-left:
+    <<: *base_bottom_plate
     footprints:
       <<: *pcb_base
       <<: *bottom_plate_text_f
       <<: *bottom_plate_charger_text_r
       usb_c:
         <<: *base_usb_c_chrg
-        params: {side: 'F', show_3d: true}
+        params.side: 'F'
       bat_con:
-        what: pogo_tag_1x02_p2.54mm
         <<: *base_bat_con
-        params: {<<: *base_bat_con_params, side: 'F'}
+        what: pogo_tag_1x02_p2.54mm
+        params.side: 'F'
       led_con:
-        what: pogo_tag_1x03_p2.54mm
         <<: *base_led_con
-        params: {<<: *base_led_con_params, side: 'B'}
+        what: pogo_tag_1x03_p2.54mm
+        params.side: 'F'
       chrg_led:
         <<: *base_chrg_led
-        params: {<<: *base_chrg_led_params, side: 'F'}
+        params.side: 'F'
       stdby_led:
         <<: *base_stdby_led
-        params: {<<: *base_stdby_led_params, side: 'F'}
+        params.side: 'F'
 
   bottom-plate-charger-right:
-    template: kicad8
-    outlines:
-      edge: {outline: bottom, layer: Edge.Cuts}
+    <<: *base_bottom_plate
     footprints:
       <<: *pcb_base
       <<: *bottom_plate_text_r
       <<: *bottom_plate_charger_text_f
       usb_c:
         <<: *base_usb_c_chrg
-        params: {side: 'B', show_3d: true}
+        params.side: 'B'
       bat_con:
-        what: pogo_tag_1x02_p2.54mm
         <<: *base_bat_con
-        params: {<<: *base_bat_con_params, side: 'B'}
+        what: pogo_tag_1x02_p2.54mm
+        params.side: 'B'
       led_con:
-        what: pogo_tag_1x03_p2.54mm
         <<: *base_led_con
-        params: {<<: *base_led_con_params, side: 'B'}
+        what: pogo_tag_1x03_p2.54mm
+        params.side: 'B'
       chrg_led:
         <<: *base_chrg_led
-        params: {<<: *base_chrg_led_params, side: 'B'}
+        params.side: 'B'
         adjust: {rotate: 180}
       stdby_led:
         <<: *base_stdby_led
-        params: {<<: *base_stdby_led_params, side: 'B'}
+        params.side: 'B'
         adjust: {rotate: 180}
-
-  bottom-plate:
-    template: kicad8
-    outlines:
-      edge: {outline: bottom, layer: Edge.Cuts}
-    footprints:
-      <<: *pcb_base
-      <<: *bottom_plate_text
 
   void-lcd-cover:
     template: kicad8
     outlines:
-      edge: {outline: bottom, layer: Edge.Cuts}
+      edge: {outline: lcd_cover, layer: Edge.Cuts}
     footprints:
       <<: *filled_zone
       window_lefthand:
@@ -566,7 +584,6 @@ pcbs:
           ref.aggregate.parts: [matrix_inner_home]
           shift: [px+2, -3.8]
       powered_by:
-        what: utility_text
         where:
           ref.aggregate.parts: [matrix_inner_home]
           shift: [px+2, -23.3]
@@ -601,10 +618,10 @@ pcbs:
           reversible: true
 
   void-3x5-hybrid-mx:
-    template: kicad8
-    outlines:
-      edge: {outline: bottom, layer: Edge.Cuts}
+    <<: *base_bottom_plate
+    outlines.edge.outline: pcb
     footprints:
+      <<: *pcb_base
       hotswap:
         what: MX_HS_1u
         where:
@@ -623,28 +640,16 @@ pcbs:
         where:
           - ref: cluster_space_thumb
         params: {P1: "{{colrow}}", P2: "{{column_net}}"}
-      diode:
-        what: d_1206_3216m
+      diode_mx:
+        <<: *base_diode
         where:
           - /matrix_.*/
         adjust: {shift: [-7, 2.5], rotate: -90}
-        params:
-          show_3d: true
-          side: 'B'
-          reversible: true
-          from: "{{colrow}}" # from
-          to: "{{row_net}}" # to
       diode_choc:
-        what: d_1206_3216m
+        <<: *base_diode
         where:
           - /cluster_.*/
         adjust: {shift: [-7.5, 2.5], rotate: -90}
-        params:
-          show_3d: true
-          side: 'B'
-          reversible: true
-          from: "{{colrow}}" # from
-          to: "{{row_net}}" # to
       per_key_led:
         what: "led_sk6812mini_e"
         where:
@@ -761,31 +766,18 @@ pcbs:
         adjust:
           ref.aggregate.parts: [matrix_inner_home]
           shift: [px+2, -3.8]
-      mcu_r_bottom:
-        what: utility_text
+      mcu_r_bottom: &mcu_bottom
+        <<: *base_text
         where:
           - ref: matrix_inner_home
             shift: [px+2, -17]
-        params:
-          side: 'F'
-          face: 'KiCad Font'
-          width: 1.5
-          height: 1.5
-          knockout: true
-          text: 'R. Bottom'
+        params.side: 'F'
+        params.text: 'R. Bottom'
       mcu_l_bottom:
-        what: utility_text
-        where:
-          - ref: matrix_inner_home
-            shift: [px+2, -17]
-        params:
-          side: 'B'
-          face: 'KiCad Font'
-          width: 1.5
-          height: 1.5
-          knockout: true
-          mirrored: true
-          text: 'L. Bottom'
+        <<: *mcu_bottom
+        params.side: 'B'
+        params.text: 'L. Bottom'
+        params.mirrored: true
       R_left_hand:
         what: r_smd_0805_2012m
         where:
@@ -882,10 +874,12 @@ pcbs:
           P2: RST
       power_btn_f:
         <<: *base_power_btn
-        params: {<<: *base_power_btn_params, side: 'F', P1: BAT}
+        params.side: 'F'
+        params.P1: BAT
       power_btn_b:
-          P3: BAT
-          P2: BAT_IN
+        <<: *base_power_btn
+        params.side: 'B'
+        params.P3: BAT
       mcu_bat_con:
         what: ph_1x02_smd
         where:
@@ -912,62 +906,51 @@ pcbs:
           knockout: true
           text: '-MCU+'
       bat_con:
-        what: pogo_pin_1x02_p2.54mm
         <<: *base_bat_con
-        params: {<<: *base_bat_con_params, side: 'B'}
-      bat_f:
+        what: pogo_pin_1x02_p2.54mm
+        params.side: 'B'
+      bat_text_f:
         <<: *base_bat
-        params: {<<: *base_small_text_params, text: '- +', side: 'F'}
-      bat_b:
+        params.side: 'F'
+      bat_text_b:
         <<: *base_bat
-        params: {<<: *base_small_text_params, text: '- +', side: 'B'}
+        params.side: 'B'
       led_con:
         what: pogo_pin_1x03_p2.54mm
         <<: *base_led_con
-        params: {<<: *base_led_con_params, side: 'B'}
+        params.side: 'B'
       chg_led_f:
         <<: *base_chrg_led
-        params: {<<: *base_chrg_led_params, side: 'F'}
+        params.side: 'F'
       chg_led_b:
         <<: *base_chrg_led
-        params: {<<: *base_chrg_led_params, side: 'B'}
-        adjust:
-          rotate: 180
+        params.side: 'B'
+        adjust: {rotate: 180}
       stdby_led_f:
         <<: *base_stdby_led
-        params: {<<: *base_stdby_led_params, side: 'F'}
+        params.side: 'F'
       stdby_led_b:
         <<: *base_stdby_led
-        params: {<<: *base_stdby_led_params, side: 'B'}
-        adjust:
-          rotate: 180
-      <<: *pcb_base
+        params.side: 'B'
+        adjust: {rotate: 180}
       r_bottom:
-        <<: *bottom_text_pos
-        what: utility_text
-        params:
-          side: 'F'
-          face: 'KiCad Font'
-          text: 'R. Bottom'
+        <<: *base_bottom_text
+        params.text: 'R. Bottom'
+        params.side: 'F'
+        params.mirrored: false
       l_bottom:
-        <<: *bottom_text_pos
-        what: utility_text
-        params:
-          side: 'B'
-          mirrored: true
-          face: 'KiCad Font'
-          text: 'L. Bottom'
+        <<: *base_bottom_text
+        params.text: 'L. Bottom'
+        params.side: 'B'
+        params.mirrored: true
       void_version_large:
-        what: utility_text
+        <<: *void_version
         where:
           ref.aggregate.parts: [matrix_inner_home]
           shift: [px+2, -27.8]
-        params:
-          width: 2
-          height: 2
-          <<: *void_version
+        params.width: 2
+        params.height: 2
       powered_by:
-        what: utility_text
         where:
           ref.aggregate.parts: [matrix_inner_home]
           shift: [px+5, -29.8]
@@ -977,31 +960,23 @@ pcbs:
         where:
           ref.aggregate.parts: [matrix_inner_home]
           shift: [px+2, -33.5]
-        params:
-          reversible: true
+        params: {reversible: true}
       oshw_logo:
         what: logo_oshw
         where:
           - ref: matrix_inner_home
             shift: [px+8, -33.5]
-        params:
-          reversible: true
+        params: {reversible: true}
 
   hybrid-top-plate:
     template: kicad8
     outlines:
-      edge: {outline: bottom, layer: Edge.Cuts}
+      edge: {outline: top_hybrid, layer: Edge.Cuts}
     footprints:
       <<: *filled_zone
       designed_by:
-        what: utility_text
+        <<: *designed_by
         where:
           - /matrix_ring_bottom/
         adjust:
           shift: [7, -8.5]
-        params:
-          side: 'F'
-          reversible: true
-          width: 1.2
-          height: 1.2
-          <<: *designed_by
