@@ -9,8 +9,8 @@
 	(paper "A4")
 	(title_block
 		(title "void-3x5-cherry-mx")
-		(date "2024-11-17")
-		(rev "0.5.9")
+		(date "2025-02-01")
+		(rev "0.6.0")
 		(company "Allen Choi")
 	)
 	(layers
@@ -2613,7 +2613,7 @@
 		)
 		(fp_arc
 			(start -3.4 1.475)
-			(mid -2.826424 1.655849)
+			(mid -2.826424 1.65585)
 			(end -2.460307 2.13298)
 			(stroke
 				(width 0.05)
@@ -2846,7 +2846,7 @@
 		)
 		(fp_arc
 			(start 2.455444 2.13293)
-			(mid 1.577273 3.167237)
+			(mid 1.577274 3.167238)
 			(end 0.299999 3.624997)
 			(stroke
 				(width 0.05)
@@ -7899,7 +7899,7 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor handsolder")
 		(property "Reference" "R2"
-			(at 0 -1.65 270)
+			(at 0 -1.65 -90)
 			(layer "F.SilkS")
 			(hide yes)
 			(uuid "02440a35-7bba-486e-9f08-9ea3434b059c")
@@ -15089,7 +15089,7 @@
 		)
 		(fp_line
 			(start 7.465 -6.31)
-			(end 4.915002 -6.31)
+			(end 4.915003 -6.31)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -15139,7 +15139,7 @@
 		)
 		(fp_line
 			(start 4.915 -6.74)
-			(end 4.915002 -6.31)
+			(end 4.915003 -6.31)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -15590,7 +15590,7 @@
 		(uuid "5c7dc1f0-9676-468d-ac7b-35a58f2957fb")
 		(at 160.148124 95.527614 180)
 		(property "Reference" "L10"
-			(at 0 2.1 360)
+			(at 0 2.1 0)
 			(layer "Eco1.User")
 			(uuid "7b39ebc9-716b-4d1e-9f37-5c30c53d58bb")
 			(effects
@@ -15601,7 +15601,7 @@
 			)
 		)
 		(property "Value" "SK6812MINI-E"
-			(at 0 -0.5 360)
+			(at 0 -0.5 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "2ed657f8-3c63-417e-afe7-3bc4359c734b")
@@ -15613,7 +15613,7 @@
 			)
 		)
 		(property "Footprint" "TB2086_LED:LED_SK6812MINI-E_rev"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "df9cce11-c6f8-4101-82a5-7d7516954d78")
@@ -15625,7 +15625,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "9772b7fe-2ad5-4211-a5c4-22f93ce2258a")
@@ -15637,7 +15637,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "7f8fdb26-cbc5-482d-b0b6-a410678294bc")
@@ -20531,7 +20531,7 @@
 		)
 		(fp_line
 			(start 7.465 -6.31)
-			(end 4.915002 -6.31)
+			(end 4.915003 -6.31)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -20581,7 +20581,7 @@
 		)
 		(fp_line
 			(start 4.915 -6.74)
-			(end 4.915002 -6.31)
+			(end 4.915003 -6.31)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -30329,7 +30329,7 @@
 		)
 		(fp_line
 			(start 7.465 -6.31)
-			(end 4.915002 -6.31)
+			(end 4.915003 -6.31)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -30379,7 +30379,7 @@
 		)
 		(fp_line
 			(start 4.915 -6.74)
-			(end 4.915002 -6.31)
+			(end 4.915003 -6.31)
 			(stroke
 				(width 0.05)
 				(type solid)
@@ -37329,7 +37329,7 @@
 		)
 		(fp_arc
 			(start -6.95 -6.45)
-			(mid -6.803553 -6.803552)
+			(mid -6.803552 -6.803552)
 			(end -6.45 -6.95)
 			(stroke
 				(width 0.05)
@@ -37351,7 +37351,7 @@
 		)
 		(fp_arc
 			(start -6.45 6.95)
-			(mid -6.803552 6.803553)
+			(mid -6.803552 6.803552)
 			(end -6.95 6.45)
 			(stroke
 				(width 0.05)
@@ -37636,7 +37636,7 @@
 		)
 		(fp_arc
 			(start -3.45 6.125001)
-			(mid -2.742894 6.417893)
+			(mid -2.742892 6.417892)
 			(end -2.45 7.125)
 			(stroke
 				(width 0.05)
@@ -45175,7 +45175,7 @@
 			(uuid "b3a75a14-ce40-44e8-b8d9-2bec4b11ee75")
 		)
 		(pad "1" thru_hole circle
-			(at -2.200002 0 353)
+			(at -2.200003 0 353)
 			(size 0.4 0.4)
 			(drill 0.3)
 			(layers "*.Cu" "*.Mask")
@@ -45269,7 +45269,7 @@
 			(uuid "acef4e48-aaa8-4b7d-be8d-67737be28c09")
 		)
 		(pad "3" thru_hole circle
-			(at 2.200002 0 353)
+			(at 2.200003 0 353)
 			(size 0.4 0.4)
 			(drill 0.3)
 			(layers "*.Cu" "*.Mask")

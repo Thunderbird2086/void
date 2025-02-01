@@ -9,8 +9,8 @@
 	(paper "A4")
 	(title_block
 		(title "void-3x5-chocolate")
-		(date "2024-11-17")
-		(rev "0.5.9")
+		(date "2025-02-01")
+		(rev "0.6.0")
 		(company "Allen Choi")
 	)
 	(layers
@@ -13886,7 +13886,7 @@
 		(descr "https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf")
 		(tags "LED RGB NeoPixel Mini")
 		(property "Reference" "L23"
-			(at 0 -2.75 360)
+			(at 0 -2.75 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "ebed5757-cf0c-4885-bf6f-a5bd31dfb763")
@@ -13898,7 +13898,7 @@
 			)
 		)
 		(property "Value" "SK6812MINI"
-			(at 0 3.25 360)
+			(at 0 3.25 0)
 			(layer "F.Fab")
 			(uuid "0e7ecac5-1b6a-4ff3-a3b4-e90eccfef0f8")
 			(effects
@@ -13909,7 +13909,7 @@
 			)
 		)
 		(property "Footprint" "TB2086_LED:LED_SK6812MINI_PLCC4_3.5x3.5mm_P1.75mm_rev_all"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "b0579f33-996f-4999-ace3-2936df96157a")
@@ -13921,7 +13921,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "61d5cb64-e11f-40b3-88ea-4f2c296fbf77")
@@ -13933,7 +13933,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "77e29989-32bb-4bf8-a6db-769e7e4517be")
@@ -15647,7 +15647,7 @@
 		)
 		(fp_arc
 			(start -6.95 -6.45)
-			(mid -6.803555 -6.803554)
+			(mid -6.803554 -6.803555)
 			(end -6.45 -6.95)
 			(stroke
 				(width 0.05)
@@ -15658,7 +15658,7 @@
 		)
 		(fp_arc
 			(start -6.45 6.95)
-			(mid -6.803554 6.803555)
+			(mid -6.803555 6.803554)
 			(end -6.95 6.45)
 			(stroke
 				(width 0.05)
@@ -17981,7 +17981,7 @@
 		(uuid "6b9c0d8a-c807-479d-bef0-ec5b3ea2bba4")
 		(at 160.645385 95.47535)
 		(property "Reference" "L10"
-			(at 0 2.1 360)
+			(at 0 2.1 0)
 			(layer "Eco1.User")
 			(uuid "a53bb3e2-04f5-40a2-a7d6-a1b27253d3b3")
 			(effects
@@ -17992,7 +17992,7 @@
 			)
 		)
 		(property "Value" "SK6812MINI-E"
-			(at 0 -0.5 360)
+			(at 0 -0.5 0)
 			(layer "B.SilkS")
 			(hide yes)
 			(uuid "9b581cb0-1374-4f5d-872a-5bef60a3359a")
@@ -18004,7 +18004,7 @@
 			)
 		)
 		(property "Footprint" "TB2086_LED:LED_SK6812MINI-E_rev"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "11a7c736-fc8f-4a87-b0a1-af73fdb8376e")
@@ -18016,7 +18016,7 @@
 			)
 		)
 		(property "Datasheet" "https://cdn-shop.adafruit.com/product-files/2686/SK6812MINI_REV.01-1-2.pdf"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "d6e8a2ae-aa09-41a3-b965-0efe8111b1fa")
@@ -18028,7 +18028,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "6a994044-7227-4b0f-bb75-ad4db9f20aff")
@@ -19575,7 +19575,7 @@
 		)
 		(fp_arc
 			(start -3.4 1.475)
-			(mid -2.826424 1.655849)
+			(mid -2.826425 1.655849)
 			(end -2.460307 2.13298)
 			(stroke
 				(width 0.05)
@@ -19586,7 +19586,7 @@
 		)
 		(fp_arc
 			(start -0.299999 3.624999)
-			(mid -1.577272 3.167235)
+			(mid -1.577271 3.167235)
 			(end -2.455444 2.13293)
 			(stroke
 				(width 0.05)
@@ -19808,7 +19808,7 @@
 		)
 		(fp_arc
 			(start 2.455444 2.13293)
-			(mid 1.577273 3.167237)
+			(mid 1.577274 3.167237)
 			(end 0.299999 3.624997)
 			(stroke
 				(width 0.05)
@@ -22508,7 +22508,7 @@
 		)
 		(fp_arc
 			(start -6.95 -6.45)
-			(mid -6.803555 -6.803554)
+			(mid -6.803554 -6.803555)
 			(end -6.45 -6.95)
 			(stroke
 				(width 0.05)
@@ -22519,7 +22519,7 @@
 		)
 		(fp_arc
 			(start -6.45 6.95)
-			(mid -6.803554 6.803555)
+			(mid -6.803555 6.803554)
 			(end -6.95 6.45)
 			(stroke
 				(width 0.05)
@@ -29352,7 +29352,7 @@
 		)
 		(fp_arc
 			(start -3.45 6.125001)
-			(mid -2.742893 6.417893)
+			(mid -2.742892 6.417892)
 			(end -2.45 7.125)
 			(stroke
 				(width 0.05)
@@ -39574,7 +39574,7 @@
 			(uuid "7de099d2-f345-4044-afac-3b6ddffd9bca")
 		)
 		(pad "1" thru_hole circle
-			(at -2.200002 0 353)
+			(at -2.200003 0 353)
 			(size 0.4 0.4)
 			(drill 0.3)
 			(layers "*.Cu" "*.Mask")
@@ -39668,7 +39668,7 @@
 			(uuid "bec21b43-3a6d-4924-980b-bc383d66b10f")
 		)
 		(pad "3" thru_hole circle
-			(at 2.200002 0 353)
+			(at 2.200003 0 353)
 			(size 0.4 0.4)
 			(drill 0.3)
 			(layers "*.Cu" "*.Mask")
@@ -40468,7 +40468,7 @@
 		)
 		(fp_arc
 			(start -6.95 -6.45)
-			(mid -6.803555 -6.803554)
+			(mid -6.803554 -6.803555)
 			(end -6.45 -6.95)
 			(stroke
 				(width 0.05)
@@ -40479,7 +40479,7 @@
 		)
 		(fp_arc
 			(start -6.45 6.95)
-			(mid -6.803554 6.803555)
+			(mid -6.803555 6.803554)
 			(end -6.95 6.45)
 			(stroke
 				(width 0.05)
