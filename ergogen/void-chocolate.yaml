@@ -1,6 +1,6 @@
 meta:
   author: Allen Choi
-  version: 0.6.0
+  version: 0.6.1
   engine: 4.1.0
   project: VOID 3x5 Choc
 
@@ -333,7 +333,7 @@ base_bottom_text: &base_bottom_text
     - /cluster_esc_thumb/
     - /cluster_layer_thumb/
   adjust:
-    shift: [0, -8]
+    shift: [0, -9.2]
 
 text_bottom_plate:
   front: &bottom_plate_text_f
