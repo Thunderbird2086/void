@@ -302,7 +302,7 @@ text_defs: &text_defs
 
   void_version: &void_version
     <<: *base_text_android
-    params.text: 'VOID v0.6.0'
+    params.text: 'VOID v0.6.1'
   
   powered_by: &powered_by
     <<: *base_text_small
