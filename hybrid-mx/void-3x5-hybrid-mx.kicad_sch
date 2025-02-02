@@ -10195,7 +10195,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+		(property "Footprint" "TB2086_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 67.31 77.978 90)
 			(effects
 				(font
@@ -10470,7 +10470,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+		(property "Footprint" "TB2086_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 67.31 68.707 90)
 			(effects
 				(font
@@ -14527,7 +14527,7 @@
 				)
 			)
 		)
-		(property "Footprint" "TB2086_KEYSWITCH:SW_choc_v1_v2_HS_1u_reversible"
+		(property "Footprint" "TB2086_KEYSWITCH:SW_choc_v1_v2_HS_1.5u_reversible"
 			(at 188.976 105.664 0)
 			(effects
 				(font
