@@ -601,7 +601,7 @@ pcbs:
           reversible: true
           show_3d: true
       JP_led:
-        what: SJP_3_BBR_Pad_10x15
+        what: SJP_3_OR_Pad_10x15
         where:
           - ref: matrix_inner_home
             shift: [7, 10]
@@ -734,6 +734,7 @@ pcbs:
             shift: [30, -4.5]
             rotate: -90
         params:
+          show_3d: false
           side: 'F'
           P1: is_left_hand
           P2: GND
@@ -778,7 +779,7 @@ pcbs:
           P1: scl
           P2: VCC
       JP_sca:
-        what: SJP_3_BBR_Pad_10x15
+        what: SJP_3_OR_Pad_10x15
         where:
           - ref: matrix_inner_home
             shift: [33, -3.5]
@@ -814,10 +815,12 @@ pcbs:
         <<: *base_power_btn
         params.side: 'F'
         params.P1: BAT
+        params.show_3d: true
       power_btn_b:
         <<: *base_power_btn
         params.side: 'B'
         params.P3: BAT
+        params.show_3d: false
       mcu_bat_con:
         what: ph_1x02_smd
         where:
@@ -860,16 +863,20 @@ pcbs:
       chg_led_f:
         <<: *base_chrg_led
         params.side: 'F'
+        params.show_3d: true
       chg_led_b:
         <<: *base_chrg_led
         params.side: 'B'
+        params.show_3d: false
         adjust: {rotate: 180}
       stdby_led_f:
         <<: *base_stdby_led
         params.side: 'F'
+        params.show_3d: true
       stdby_led_b:
         <<: *base_stdby_led
         params.side: 'B'
+        params.show_3d: false
         adjust: {rotate: 180}
       r_bottom:
         <<: *base_bottom_text
