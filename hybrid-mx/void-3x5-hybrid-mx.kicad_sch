@@ -5,9 +5,9 @@
 	(uuid "ea5c1f8d-7557-4cbf-a5a2-ee0a51c138e9")
 	(paper "A3")
 	(title_block
-		(title "uniCorne Cherry")
-		(date "2023-07-20")
-		(rev "0.9")
+		(title "VOID 3x5 Hybrid MX")
+		(date "2025-02-02")
+		(rev "0.6.1")
 		(company "Thunderbird2086")
 	)
 	(lib_symbols
