@@ -8727,7 +8727,7 @@
 			(uuid "635242f4-ae09-44e2-ad91-1e5683a979d9")
 		)
 		(fp_text user "18x17 spacing"
-			(at 0 -7.6 180)
+			(at 0 -6.4 180)
 			(layer "Dwgs.User")
 			(uuid "48ac7e1a-b33e-4492-baef-42293304d52e")
 			(effects
@@ -12936,7 +12936,7 @@
 			(uuid "1c41709c-9465-4a63-9446-b248a462cb58")
 		)
 		(fp_text user "18x17 spacing"
-			(at 0 -7.6 180)
+			(at 0 -6.4 180)
 			(layer "Dwgs.User")
 			(uuid "bfda4836-406b-42fe-8e2a-9d218626d1f8")
 			(effects
@@ -18356,8 +18356,9 @@
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor handsolder")
 		(property "Reference" "R2"
-			(at 0 -1.65 -90)
+			(at 0 -1.65 270)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "1d244812-8077-432e-af3d-dc6ec26377b9")
 			(effects
 				(font
@@ -19586,7 +19587,7 @@
 		)
 		(fp_arc
 			(start -0.299999 3.624999)
-			(mid -1.577272 3.167235)
+			(mid -1.577271 3.167235)
 			(end -2.455444 2.13293)
 			(stroke
 				(width 0.05)
@@ -25239,7 +25240,7 @@
 			(uuid "d3d21327-578a-4df1-bafc-954a444607b0")
 		)
 		(fp_text user "18x17 spacing"
-			(at 0 -7.6 180)
+			(at 0 -6.4 180)
 			(layer "Dwgs.User")
 			(uuid "5504e388-0439-4027-8396-ff024c547363")
 			(effects
@@ -28470,7 +28471,7 @@
 			(uuid "33ad153d-9f2a-4fcb-98fb-0a0c28df3c30")
 		)
 		(fp_text user "18x17 spacing"
-			(at 0 -7.6 180)
+			(at 0 -6.4 180)
 			(layer "Dwgs.User")
 			(uuid "34be35b9-5f68-40da-880f-56f7475508e8")
 			(effects
@@ -33343,7 +33344,7 @@
 			(uuid "3b477211-97fe-432d-b13b-e30b712e604b")
 		)
 		(fp_text user "18x17 spacing"
-			(at 0 -7.6 180)
+			(at 0 -6.4 180)
 			(layer "Dwgs.User")
 			(uuid "287fecb2-e944-4778-b948-c658522295d0")
 			(effects
@@ -45718,7 +45719,7 @@
 			(uuid "d7c8fa21-89a0-4518-93bc-697d691a40aa")
 		)
 		(fp_text user "18x17 spacing"
-			(at 0 -7.6 180)
+			(at 0 -6.4 180)
 			(layer "Dwgs.User")
 			(uuid "295044ee-b2ce-4935-8099-5383adaa57bc")
 			(effects
@@ -47311,6 +47312,7 @@
 		(property "Reference" "R1"
 			(at 0 1.65 90)
 			(layer "B.SilkS")
+			(hide yes)
 			(uuid "d579ac44-5545-41d0-a5f4-f8a0233cc370")
 			(effects
 				(font
@@ -48123,7 +48125,7 @@
 		)
 	)
 	(gr_text "L. Bottom"
-		(at 180.695385 91.00535 0)
+		(at 180.695385 92.20535 0)
 		(layer "B.SilkS")
 		(uuid "21dc09ff-c8d6-447d-923d-12704c07b7f9")
 		(effects
@@ -48135,7 +48137,7 @@
 		)
 	)
 	(gr_text "L. Bottom"
-		(at 140.595385 80.00535 0)
+		(at 140.595385 81.20535 0)
 		(layer "B.SilkS")
 		(uuid "2bb0de80-9d3d-41d0-a9a4-63eec53016ea")
 		(effects
@@ -48277,7 +48279,7 @@
 		)
 	)
 	(gr_text "L. Bottom"
-		(at 120.545385 85.00535 0)
+		(at 120.545385 86.20535 0)
 		(layer "B.SilkS")
 		(uuid "58574d35-36cf-4df2-84f1-2e3c437f2291")
 		(effects
@@ -48289,7 +48291,7 @@
 		)
 	)
 	(gr_text "L. Bottom"
-		(at 185.618517 137.337215 -22)
+		(at 185.618517 138.537215 -22)
 		(layer "B.SilkS")
 		(uuid "6ee5e779-91a8-4ea9-ab42-411507b67a8a")
 		(effects
@@ -48301,7 +48303,7 @@
 		)
 	)
 	(gr_text "L. Bottom"
-		(at 160.645385 108.55535 0)
+		(at 160.645385 109.75535 0)
 		(layer "B.SilkS")
 		(uuid "70b0a784-7444-4f06-bff1-546963a011e5")
 		(effects
@@ -48630,7 +48632,7 @@
 		)
 	)
 	(gr_text "L. Bottom"
-		(at 166.221784 132.27455 -7)
+		(at 166.221784 133.47455 -7)
 		(layer "B.SilkS")
 		(uuid "845e0f8a-174f-4fa9-b157-2e10dd42f2a7")
 		(effects
@@ -48642,7 +48644,7 @@
 		)
 	)
 	(gr_text "L. Bottom"
-		(at 120.545385 105.05535 0)
+		(at 120.545385 106.25535 0)
 		(layer "B.SilkS")
 		(uuid "897bce1b-4cd6-48d8-a14a-3461bc42abd0")
 		(effects
@@ -48654,7 +48656,7 @@
 		)
 	)
 	(gr_text "L. Bottom"
-		(at 160.645385 88.50535 0)
+		(at 160.645385 89.70535 0)
 		(layer "B.SilkS")
 		(uuid "9a3dbb77-2d36-49b5-980d-d5adc75d9ce0")
 		(effects
@@ -48796,7 +48798,7 @@
 		)
 	)
 	(gr_text "L. Bottom"
-		(at 120.545385 64.95535 0)
+		(at 120.545385 66.15535 0)
 		(layer "B.SilkS")
 		(uuid "b2a4af8c-d861-4aff-8b2c-d7c0c7a652cb")
 		(effects
@@ -48846,7 +48848,7 @@
 		)
 	)
 	(gr_text "L. Bottom"
-		(at 160.645385 68.45535 0)
+		(at 160.645385 69.65535 0)
 		(layer "B.SilkS")
 		(uuid "c8e56556-ed10-4988-9048-54961d435d2c")
 		(effects
@@ -48871,7 +48873,7 @@
 		)
 	)
 	(gr_text "R. Bottom"
-		(at 120.545385 105.05535 0)
+		(at 120.545385 106.25535 0)
 		(layer "F.SilkS")
 		(uuid "00a5d500-16f9-4b6e-9a4e-d0bf1c68228d")
 		(effects
@@ -49011,7 +49013,7 @@
 		)
 	)
 	(gr_text "R. Bottom"
-		(at 160.645385 88.50535 0)
+		(at 160.645385 89.70535 0)
 		(layer "F.SilkS")
 		(uuid "143b2b79-6097-47f9-8175-201bc596ca7e")
 		(effects
@@ -49022,7 +49024,7 @@
 		)
 	)
 	(gr_text "R. Bottom"
-		(at 160.645385 108.55535 0)
+		(at 160.645385 109.75535 0)
 		(layer "F.SilkS")
 		(uuid "2f16865b-ca22-41cb-8a35-d27ee63bcc10")
 		(effects
@@ -49045,7 +49047,7 @@
 		)
 	)
 	(gr_text "R. Bottom"
-		(at 185.618517 137.337215 -22)
+		(at 185.618517 138.537215 -22)
 		(layer "F.SilkS")
 		(uuid "50512108-065f-40c4-aea7-2eff33e1d326")
 		(effects
@@ -49056,7 +49058,7 @@
 		)
 	)
 	(gr_text "R. Bottom"
-		(at 140.595385 80.00535 0)
+		(at 140.595385 81.20535 0)
 		(layer "F.SilkS")
 		(uuid "68661620-a432-45eb-b60c-bcd0524539d3")
 		(effects
@@ -49079,7 +49081,7 @@
 		)
 	)
 	(gr_text "R. Bottom"
-		(at 120.545385 64.95535 0)
+		(at 120.545385 66.15535 0)
 		(layer "F.SilkS")
 		(uuid "7739d3ae-3871-4014-8222-b02b81782ce7")
 		(effects
@@ -49090,7 +49092,7 @@
 		)
 	)
 	(gr_text "R. Bottom"
-		(at 166.221784 132.27455 -7)
+		(at 166.221784 133.47455 -7)
 		(layer "F.SilkS")
 		(uuid "860caf08-674c-4896-85e5-1e45adec0852")
 		(effects
@@ -49101,7 +49103,7 @@
 		)
 	)
 	(gr_text "R. Bottom"
-		(at 120.545385 85.00535 0)
+		(at 120.545385 86.20535 0)
 		(layer "F.SilkS")
 		(uuid "8d69b896-387a-4e92-ba0e-55ad913e3fc7")
 		(effects
@@ -49253,7 +49255,7 @@
 		)
 	)
 	(gr_text "R. Bottom"
-		(at 180.695385 91.00535 0)
+		(at 180.695385 92.20535 0)
 		(layer "F.SilkS")
 		(uuid "b0efabc3-ea73-45e9-b9eb-c6f21890d9ee")
 		(effects
@@ -49604,7 +49606,7 @@
 		)
 	)
 	(gr_text "R. Bottom"
-		(at 160.645385 68.45535 0)
+		(at 160.645385 69.65535 0)
 		(layer "F.SilkS")
 		(uuid "eec8f299-c278-4872-9760-f8936bbc5d43")
 		(effects
