@@ -14,5 +14,5 @@ The pinky column is slightly splayed while the others are column staggered. For 
 
 ![Hybrid](docs/imgs/VOID-0.6.1-3x5-hybrid-mx.png)
 
-## BuLd guide
+## Build guide
 TODO
